@@ -9,6 +9,13 @@ versions:
 topics:
   - API
 miniTocMaxHeadingLevel: 3
+ms.openlocfilehash: d5206723dec2c849c4c550a1634ce18167da6b38
+ms.sourcegitcommit: 47bd0e48c7dba1dde49baff60bc1eddc91ab10c5
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 09/05/2022
+ms.locfileid: '147067510'
 ---
+## Acerca de la API de usuarios
 
-Muchos de los recursos en la API de los usuarios proporcionan un atajo para obtener información acerca del usuario autenticado actualmente. Si una URL de solicitud no incluye un parámetro de `{username}`, entonces la respuesta será para el usuario que inició sesión (y debes pasar la [información de autenticación](/rest/overview/resources-in-the-rest-api#authentication) con tu solicitud).{% ifversion fpt or ghes or ghec %} La información privada adicional, tal como si un usuario tiene habilitada la autenticación bifactorial, se incluye cuando se está autenticado con la autenticación básica o a través de OAuth, con el alcance de `user`.{% endif %}
+{% data reusables.user-settings.user-api %}

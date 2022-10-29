@@ -1,5 +1,5 @@
 ---
-title: About SCIM for organizations
+title: Sobre o SCIM para organizações
 intro: 'Com o Sistema para gerenciamento de identidades entre domínios (SCIM, System for Cross-domain Identity Management), os administradores podem automatizar a troca de informações de identidade do usuário entre sistemas.'
 redirect_from:
   - /articles/about-scim
@@ -10,39 +10,44 @@ versions:
 topics:
   - Organizations
   - Teams
+ms.openlocfilehash: 8071909478d52770f2e8107df31e61b7111f73c6
+ms.sourcegitcommit: fcf3546b7cc208155fb8acdf68b81be28afc3d2d
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/11/2022
+ms.locfileid: '145065449'
 ---
+## Sobre o SCIM para organizações
 
-## About SCIM for organizations
-
-If your organization uses [SAML SSO](/articles/about-identity-and-access-management-with-saml-single-sign-on), you can implement SCIM to add, manage, and remove organization members' access to {% data variables.product.product_name %}. Por exemplo, um administrador pode desprovisionar um integrante da organização usando SCIM e remover automaticamente o integrante da organização.
+Se sua organização usa o [SSO do SAML](/articles/about-identity-and-access-management-with-saml-single-sign-on), você pode implementar o SCIM para adicionar, gerenciar e remover o acesso dos membros da organização ao {% data variables.product.product_name %}. Por exemplo, um administrador pode desprovisionar um integrante da organização usando SCIM e remover automaticamente o integrante da organização.
 
 {% data reusables.saml.ghec-only %}
 
 {% data reusables.scim.enterprise-account-scim %}
 
-Se o SAML SSO for usado sem implementação do SCIM, você não terá desprovisionamento automático. Quando as sessões dos integrantes da organização expiram depois que o acesso deles é removido do IdP, eles não podem ser removidos automaticamente da organização. Os tokens autorizados concedem acesso à organização mesmo depois que as respectivas sessões expiram. If SCIM is not used, to fully remove a member's access, an organization owner must remove the member's access in the IdP and manually remove the member from the organization on {% data variables.product.prodname_dotcom %}.
+Se você usar o SSO do SAML sem implementar o SCIM, não terá o desprovisionamento automático. Quando as sessões dos membros da organização expiram depois que o acesso é removido do IdP, eles não são automaticamente removidos da organização. Os tokens autorizados permitem acesso à organização mesmo depois que as sessões expiram. Se o SCIM não for usado, e um usuário quiser remover totalmente o acesso de um membro, ele deverá remover o acesso do membro no IdP e remover manualmente o membro da organização no {% data variables.product.prodname_dotcom %}.
 
 {% data reusables.scim.changes-should-come-from-idp %}
 
 ## Provedores de identidade compatíveis
 
-These identity providers (IdPs) are compatible with the {% data variables.product.product_name %} SCIM API for organizations. Para obter mais informações, consulte [SCIM](/rest/scim) na documentação da API {% ifversion ghec %}{% data variables.product.prodname_dotcom %}{% else %}{% data variables.product.product_name %}{% endif %}.
-- Azure AD
+Estes IdPs (provedores de identidade) são compatíveis com a API do SCIM do {% data variables.product.product_name %} para organizações. Para obter mais informações, confira [SCIM](/rest/scim) na documentação da API do {% ifversion ghec %}{% data variables.product.prodname_dotcom %}{% else %}{% data variables.product.product_name %}{% endif %}.
+- AD do Azure
 - Okta
 - OneLogin
 
-## About SCIM configuration for organizations
+## Sobre a configuração do SCIM para organizações
 
 {% data reusables.scim.dedicated-configuration-account %}
 
-Before you authorize the {% data variables.product.prodname_oauth_app %}, you must have an active SAML session. Para obter mais informações, consulte "[Sobre a autenticação com logon único SAML](/authentication/authenticating-with-saml-single-sign-on/about-authentication-with-saml-single-sign-on#about-oauth-apps-github-apps-and-saml-sso)".
+Para autorizar o {% data variables.product.prodname_oauth_app %}, você deve ter uma sessão de SAML ativa. Para obter mais informações, confira "[Sobre a autenticação com o logon único do SAML](/authentication/authenticating-with-saml-single-sign-on/about-authentication-with-saml-single-sign-on#about-oauth-apps-github-apps-and-saml-sso)".
 
 {% note %}
 
 **Observação:** {% data reusables.scim.nameid-and-username-must-match %}
 
-{% endnote %}
+{% endnote %} 
 
-## Leia mais
+## Leitura adicional
 
-- "[Visualizar e gerenciar acesso de SAML de um integrante à sua organização](/github/setting-up-and-managing-organizations-and-teams//viewing-and-managing-a-members-saml-access-to-your-organization)"
+- "[Como ver e gerenciar o acesso do SAML de um membro à sua organização](/github/setting-up-and-managing-organizations-and-teams//viewing-and-managing-a-members-saml-access-to-your-organization)"

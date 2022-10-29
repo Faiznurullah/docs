@@ -1,8 +1,8 @@
-1. Abaixo do nome da sua organização, clique em
-{% octicon "people" aria-label="The people icon" %} **Teams**.
-  {% ifversion fpt or ghes > 3.2 or ghec %}
-  ![Guia equipes](/assets/images/help/organizations/organization-teams-tab-with-overview.png)
+1. Under your organization name, click {% octicon "people" aria-label="The people icon" %} **Teams**.
+  {% ifversion fpt or ghes or ghec %}
+  ![Teams tab](/assets/images/help/organizations/organization-teams-tab-with-overview.png)
   {% else %}
-  ![Guia equipes](/assets/images/help/organizations/organization-teams-tab.png)
+  ![Teams tab](/assets/images/help/organizations/organization-teams-tab.png)
   {% endif %}
-1. No lado direito da aba Teams (Equipes), clique em **New team** (Nova equipe). ![Botão New team (Nova equipe)](/assets/images/help/teams/new-team-button.png)
+1. On the right side of the Teams tab, click **New team**.
+  ![New team button](/assets/images/help/teams/new-team-button.png)

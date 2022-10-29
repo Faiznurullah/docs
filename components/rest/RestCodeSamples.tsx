@@ -36,6 +36,10 @@ const responseSelectOptions = [
   { key: 'schema', text: 'Response schema' },
 ]
 
+function getLanguageHighlight(selectedLanguage: string) {
+  return selectedLanguage === JSKEY ? 'javascript' : 'curl'
+}
+
 export function RestCodeSamples({ operation, slug }: Props) {
   const { t } = useTranslation('products')
 
@@ -56,14 +60,17 @@ export function RestCodeSamples({ operation, slug }: Props) {
   }))
 
   // Menu options for the language selector
-  const languageSelectOptions: LanguageOptionT[] = [
-    { key: CURLKEY, text: 'cURL' },
-    { key: JSKEY, text: 'JavaScript' },
-  ]
-  // Not all examples support the GH CLI language option. If any of
-  // the examples don't support it, we don't show GH CLI as an option.
-  if (!languageExamples.some((example) => example.ghcli === undefined)) {
-    languageSelectOptions.push({ key: GHCLIKEY, text: 'GitHub CLI' })
+  const languageSelectOptions: LanguageOptionT[] = [{ key: CURLKEY, text: 'cURL' }]
+
+  // Management Console operations are not supported by Octokit
+  if (operation.subcategory !== 'management-console') {
+    languageSelectOptions.push({ key: JSKEY, text: 'JavaScript' })
+
+    // Not all examples support the GH CLI language option. If any of
+    // the examples don't support it, we don't show GH CLI as an option.
+    if (!languageExamples.some((example) => example.ghcli === undefined)) {
+      languageSelectOptions.push({ key: GHCLIKEY, text: 'GitHub CLI' })
+    }
   }
 
   // Menu options for the example selector
@@ -95,7 +102,7 @@ export function RestCodeSamples({ operation, slug }: Props) {
     setSelectedLanguage(languageKey)
     Cookies.set('codeSampleLanguagePreferred', languageKey, {
       sameSite: 'strict',
-      secure: true,
+      secure: document.location.protocol !== 'http:',
     })
   }
 
@@ -144,7 +151,7 @@ export function RestCodeSamples({ operation, slug }: Props) {
     const reqElem = responseCodeExample.current
     const scrollElem = scrollRef.current
 
-    // Reset scroll position to the top when switching bteween example response and
+    // Reset scroll position to the top when switching between example response and
     // response schema
     if (scrollElem) {
       scrollElem.scrollTop = 0
@@ -227,13 +234,14 @@ export function RestCodeSamples({ operation, slug }: Props) {
               {languageSelectOptions.map((option) => (
                 <UnderlineNav.Link
                   key={option.key}
-                  as="button"
                   onClick={() => {
                     handleLanguageSelection(option.key)
                   }}
-                  href={option.key}
                   selected={option.key === selectedLanguage}
-                  className="pr-3 mr-0 keyboard-focus"
+                  className="pr-3 mr-0"
+                  sx={{
+                    cursor: 'pointer',
+                  }}
                 >
                   {option.text}
                 </UnderlineNav.Link>
@@ -255,8 +263,12 @@ export function RestCodeSamples({ operation, slug }: Props) {
 
         {/* Example requests */}
         <div
-          className={cx(styles.codeBlock, styles.requestCodeBlock, 'border-top rounded-0 my-0')}
-          data-highlight={selectedLanguage === JSKEY ? 'javascript' : 'curl'}
+          className={cx(
+            styles.codeBlock,
+            styles.requestCodeBlock,
+            `border-top rounded-1 my-0 ${getLanguageHighlight(selectedLanguage)}`
+          )}
+          data-highlight={getLanguageHighlight(selectedLanguage)}
         >
           <code ref={requestCodeExample}>{displayedExample[selectedLanguage]}</code>
         </div>
@@ -278,13 +290,14 @@ export function RestCodeSamples({ operation, slug }: Props) {
               return (
                 <UnderlineNav.Link
                   key={option.key}
-                  as="button"
                   onClick={() => {
                     handleResponseSelection(option.key)
                   }}
-                  href={option.key}
                   selected={option.key === selectedResponse}
-                  className="pr-3 mr-0 keyboard-focus ml-2"
+                  className="pr-3 mr-0 ml-2"
+                  sx={{
+                    cursor: 'pointer',
+                  }}
                 >
                   {option.text}
                 </UnderlineNav.Link>
@@ -306,7 +319,7 @@ export function RestCodeSamples({ operation, slug }: Props) {
               className={cx(
                 styles.codeBlock,
                 styles.responseCodeBlock,
-                'border-top rounded-0 my-0'
+                'border-top rounded-1 my-0'
               )}
               data-highlight={'json'}
               style={{ maxHeight: responseMaxHeight }}

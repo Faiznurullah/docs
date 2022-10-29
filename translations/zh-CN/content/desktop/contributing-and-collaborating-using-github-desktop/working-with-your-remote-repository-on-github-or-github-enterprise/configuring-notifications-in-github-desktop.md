@@ -1,63 +1,68 @@
 ---
-title: Configuring notifications in GitHub Desktop
-shortTitle: 配置通知
-intro: '{% data variables.product.prodname_desktop %} will keep you up-to-date with notifications about events that occur in your pull request branch.'
+title: 在 GitHub Desktop 中配置通知
+shortTitle: Configuring notifications
+intro: '{% data variables.product.prodname_desktop %} 可让你随时查看有关拉取请求分支中发生的事件的通知。'
 versions:
   fpt: '*'
+ms.openlocfilehash: e7d99c4c81b64facae41b7697cde9d454e15e96a
+ms.sourcegitcommit: 47bd0e48c7dba1dde49baff60bc1eddc91ab10c5
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/05/2022
+ms.locfileid: '147060432'
 ---
+## 关于 {% data variables.product.prodname_desktop %} 中的通知
 
-## About notifications in {% data variables.product.prodname_desktop %}
+{% data variables.product.prodname_desktop %} 将显示当前所选存储库中发生的事件的系统通知。 在以下情况下将显示通知：
 
-{% data variables.product.prodname_desktop %} will show a system notification for events that occur in the currently selected repository. Notifications will be shown when:
+- 拉取请求检查失败。
+- 拉取请求评审保留了评论、批准或请求的更改。
 
-- Pull request checks have failed.
-- A pull request review is left with a comment, approval, or requested changes.
+单击通知会将应用程序焦点切换到 {% data variables.product.prodname_desktop %} 并提供更多详细信息。
 
-Clicking the notification will switch application focus to {% data variables.product.prodname_desktop %} and provide more detailed information.
+## 有关拉取请求检查失败的通知
 
-## Notifications about pull request check failures
+对拉取请求分支进行更改时，如果检查失败，你将收到通知。
 
-When changes are made to a pull request branch, you will receive a notification if the checks fail.
+![拉取请求检查失败通知](/assets/images/help/desktop/pull-request-checks-failed-notification.png)
 
-![pull request checks failed notification](/assets/images/help/desktop/pull-request-checks-failed-notification.png)
+单击通知将显示一个对话框，其中包含有关检查的详细信息。 查看检查失败的原因后，可以重新运行检查，或快速切换到拉取请求分支，开始修复错误。 有关详细信息，请参阅“[在 GitHub Desktop 中查看和重新运行检查](/desktop/contributing-and-collaborating-using-github-desktop/working-with-your-remote-repository-on-github-or-github-enterprise/viewing-and-re-running-checks-in-github-desktop)”。
 
-Clicking the notification will display a dialog with details about the checks. Once you've reviewed why the checks have failed, you can re-run the checks, or quickly switch to the pull request branch to get started on fixing the errors. For more information, see "[Viewing and re-running checks in GitHub Desktop](/desktop/contributing-and-collaborating-using-github-desktop/working-with-your-remote-repository-on-github-or-github-enterprise/viewing-and-re-running-checks-in-github-desktop)."
+![检查失败对话框](/assets/images/help/desktop/checks-failed-dialog.png)
+## 拉取请求评审的通知
 
-![checks failed dialog](/assets/images/help/desktop/checks-failed-dialog.png)
-## Notifications for pull request reviews
+当队友批准、评论或请求拉取请求中的更改时，{% data variables.product.prodname_desktop %} 将显示系统通知。 有关拉取请求评审的详细信息，请参阅“[关于拉取请求评审](/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews)”。
 
-{% data variables.product.prodname_desktop %} will surface a system notification when a teammate has approved, commented, or requested changes in your pull request. See "[About pull request reviews](/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews)" for more information on pull request reviews.
+![拉取请求评审通知](/assets/images/help/desktop/pull-request-review-notification.png)
 
-![Pull request review notification](/assets/images/help/desktop/pull-request-review-notification.png)
+单击通知会将应用程序焦点切换到 {% data variables.product.prodname_desktop %} 并为拉取请求审查评论提供更多上下文。
 
-Clicking the notification will switch application focus to {% data variables.product.prodname_desktop %} and provide more context for the pull request review comment.
+![拉取请求审查对话框](/assets/images/help/desktop/pull-request-review-dialog.png)
+## 启用通知
 
-![pull request review dialog](/assets/images/help/desktop/pull-request-review-dialog.png)
-## Enabling notifications
-
-If system notifications are disabled for {% data variables.product.prodname_desktop %} you can follow the steps below to enable them.
+如果已为 {% data variables.product.prodname_desktop %} 禁用系统通知，则可以按照以下步骤启用它们。
 
 {% mac %}
 
-1. Click the **Apple** menu, then select **System Preferences**.
-2. Select **Notifications & Focus**.
-3. Select **{% data variables.product.prodname_desktop %}** from the list of applications.
-4. Click **Allow Notifications**.
+1. 单击“Apple”菜单，然后选择“系统首选项”。
+2. 选择“通知和焦点”。
+3. 从应用程序列表中选择“{% data variables.product.prodname_desktop %}”。
+4. 单击“允许通知”。
 
-![macOS Notifications & Focus](/assets/images/help/desktop/mac-enable-notifications.png)
+![macOS 通知和焦点](/assets/images/help/desktop/mac-enable-notifications.png)
 
-For more information about macOS system notifications, see "[Use notifications on your Mac](https://support.apple.com/en-us/HT204079)."
+有关 macOS 系统通知的详细信息，请参阅“[在 Mac 上使用通知](https://support.apple.com/en-us/HT204079)”。
 
 {% endmac %}
 
 {% windows %}
 
-1. Open the **Start** menu, then select **Settings**.
-2. Select **System**, then click **Notifications**.
-3. Find **{% data variables.product.prodname_desktop %}** in the application list and click **On**.
+1. 打开“开始”菜单，然后选择“设置”。
+2. 选择“系统”，然后单击“通知”。
+3. 在应用程序列表中查找“{% data variables.product.prodname_desktop %}”并单击“打开”。
 
-![Enable Windows Notifications](/assets/images/help/desktop/windows-enable-notifications.png)
+![启用 Windows 通知](/assets/images/help/desktop/windows-enable-notifications.png)
 
-For more information about Windows system notifications, see "[Change notification settings in Windows](https://support.microsoft.com/en-us/windows/change-notification-settings-in-windows-8942c744-6198-fe56-4639-34320cf9444e)."
+有关 Windows 系统通知的详细信息，请参阅“[更改 Windows 中的通知设置](https://support.microsoft.com/en-us/windows/change-notification-settings-in-windows-8942c744-6198-fe56-4639-34320cf9444e)”。
 
 {% endwindows %}

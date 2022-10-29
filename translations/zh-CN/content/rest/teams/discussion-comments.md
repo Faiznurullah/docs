@@ -1,6 +1,8 @@
 ---
-title: Discussion Comments
-intro: 'The team discussion comments API allows you to get, create, edit, and delete discussion comments on a [team discussion](/rest/reference/teams#discussions) post.'
+title: 团队讨论评论
+allowTitleToDifferFromFilename: true
+shortTitle: Discussion comments
+intro: '团队讨论评论 API 允许你在[团队讨论](/rest/reference/teams#discussions)帖子上获取、创建、编辑和删除讨论评论。'
 versions:
   fpt: '*'
   ghes: '*'
@@ -9,6 +11,15 @@ versions:
 topics:
   - API
 miniTocMaxHeadingLevel: 3
+ms.openlocfilehash: bbd5abb5411a5292dc759f9595d89dcabd25c2f8
+ms.sourcegitcommit: fcf3546b7cc208155fb8acdf68b81be28afc3d2d
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/11/2022
+ms.locfileid: '147884451'
 ---
+## 关于团队讨论评论 API
 
-团队[组织](/rest/reference/orgs)的任何成员都可以创建和阅读公共讨论上的评论。 更多信息请参阅“[关于团队讨论](/organizations/collaborating-with-your-team/about-team-discussions/)”。 此 API 仅适用于团队组织中经过身份验证的成员。
+团队[组织](/rest/reference/orgs)的任何成员都可以创建和阅读公共讨论上的评论。 有关详细信息，请参阅“[关于团队讨论](/organizations/collaborating-with-your-team/about-team-discussions/)”。 
+
+{% data reusables.organizations.team-api %}

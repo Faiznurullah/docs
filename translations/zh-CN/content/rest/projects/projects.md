@@ -1,6 +1,8 @@
 ---
-title: 项目
-intro: Projects API 允许您在仓库中创建、列出、更新、删除和自定义项目。
+title: '{% data variables.product.prodname_projects_v1_caps %}'
+shortTitle: Boards
+allowTitleToDifferFromFilename: true
+intro: 'The {% data variables.product.prodname_projects_v1 %} API lets you create and manage {% data variables.projects.projects_v1_boards %} in a repository.'
 versions:
   fpt: '*'
   ghes: '*'
@@ -11,3 +13,6 @@ topics:
 miniTocMaxHeadingLevel: 3
 ---
 
+{% data reusables.projects.projects-api %}
+
+{% data reusables.user-settings.classic-projects-api-classic-pat-only %}

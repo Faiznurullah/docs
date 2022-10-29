@@ -1,6 +1,6 @@
 ---
-title: 团队
-intro: 'With the Teams API, you can create and manage teams in your GitHub organization.'
+title: Teams
+intro: 使用 Teams API，可以在 GitHub 组织中创建和管理团队。
 versions:
   fpt: '*'
   ghes: '*'
@@ -9,6 +9,13 @@ versions:
 topics:
   - API
 miniTocMaxHeadingLevel: 3
+ms.openlocfilehash: e81144e2a4141195d67b16dcf80bfa47da2285e5
+ms.sourcegitcommit: fb047f9450b41b24afc43d9512a5db2a2b750a2a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/11/2022
+ms.locfileid: '145099662'
 ---
+## 关于 Teams API
 
-此 API 仅适用于团队[组织](/rest/reference/orgs)中经过身份验证的成员。 OAuth 访问令牌需要 `read:org` [scope](/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/)。 {% data variables.product.prodname_dotcom %}  从团队 `name` 生成团队的 `slug`。
+{% data reusables.organizations.team-api %}

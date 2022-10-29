@@ -1,6 +1,6 @@
 ---
-title: 源导入
-intro: '{% data variables.migrations.source_imports_intro %}'
+title: Source imports
+intro: ''
 versions:
   fpt: '*'
   ghec: '*'
@@ -9,9 +9,13 @@ topics:
 miniTocMaxHeadingLevel: 3
 ---
 
-如果导入中存在大型文件，则典型的源导入将开始导入，然后（可选）更新作者和/或更新使用 Git LFS 的首选项。 您也可以创建侦听 [`RepositoryImportEvent`](/developers/webhooks-and-events/webhook-events-and-payloads#repository_import) 的 web 挂钩来了解导入的状态。
+## About the Source imports API
 
-在此图中可以看到更详细的示例：
+{% data reusables.user-settings.imports-api-classic-pat-only %}
+
+{% data variables.migrations.source_imports_intro %} A typical source import would start the import and then (optionally) update the authors and/or update the preference for using Git LFS if large files exist in the import. You can also create a webhook that listens for the [`RepositoryImportEvent`](/developers/webhooks-and-events/webhook-events-and-payloads#repository_import) to find out the status of the import.
+
+A more detailed example can be seen in this diagram:
 
 ```
 +---------+                     +--------+                              +---------------------+

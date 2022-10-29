@@ -1,6 +1,6 @@
 ---
-title: 议题
-intro: Issues API 使您能够查看和管理议题，包括议题受理人、评论、标签和里程碑。
+title: 问题
+intro: ''
 versions:
   fpt: '*'
   ghes: '*'
@@ -9,15 +9,13 @@ versions:
 topics:
   - API
 miniTocMaxHeadingLevel: 3
+ms.openlocfilehash: 8d9d79c8f72199108dfbd1f3e2188d3956d06eeb
+ms.sourcegitcommit: 5f9527483381cfb1e41f2322f67c80554750a47d
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/11/2022
+ms.locfileid: '147882261'
 ---
+## 关于问题 API
 
-### 议题的自定义媒体类型
-
-以下是议题支持的媒体类型。
-
-    application/vnd.github.VERSION.raw+json
-    application/vnd.github.VERSION.text+json
-    application/vnd.github.VERSION.html+json
-    application/vnd.github.VERSION.full+json
-
-有关媒体类型的更多信息，请参阅“[自定义媒体类型](/rest/overview/media-types)”。
+{% data reusables.pull_requests.issues-media-types %}

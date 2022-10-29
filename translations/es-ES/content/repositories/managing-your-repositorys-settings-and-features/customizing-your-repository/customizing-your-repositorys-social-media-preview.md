@@ -12,38 +12,42 @@ versions:
   ghec: '*'
 topics:
   - Repositories
-shortTitle: Vista previa en redes sociales
+shortTitle: Social media preview
+ms.openlocfilehash: a778b0fd95533a15806cc0034769fbf0feb3b217
+ms.sourcegitcommit: fcf3546b7cc208155fb8acdf68b81be28afc3d2d
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 09/10/2022
+ms.locfileid: '145136812'
 ---
+Hasta que agregues una imagen, los enlaces al repositorio se expanden para mostrar información básica acerca del repositorio y del avatar del propietario. Agregar una imagen a tu repositorio puede ayudar a identificar tu proyecto entre distintas plataformas de redes sociales.
 
-Hasta que agregues una imagen, los enlaces al repositorio se expanden para mostrar información básica acerca del repositorio y del avatar del propietario.  Agregar una imagen a tu repositorio puede ayudar a identificar tu proyecto entre distintas plataformas de redes sociales.
+## Adición de una imagen para personalizar la vista previa de redes sociales del repositorio
 
-## Adding an image to customize the social media preview of your repository
-
-{% ifversion not ghae %}Puedes cargar una imagen a un repositorio privado, pero tu imagen solo se puede compartir desde un repositorio público.{% endif %}
+{% ifversion not ghae %}Puede cargar una imagen a un repositorio privado, pero la imagen solo se puede compartir desde un repositorio público.{% endif %}
 
 {% tip %}
 
-**Tip:** Your image should be a PNG, JPG, or GIF file under 1 MB in size. Para presentar la mejor calidad, recomendamos mantener la imagen alrededor de 640 por 320 píxeles.
+**Sugerencia:** La imagen debe ser un archivo PNG, JPG o GIF de menos de 1 MB de tamaño. Para presentar la mejor calidad, recomendamos mantener la imagen alrededor de 640 por 320 píxeles.
 
 {% endtip %}
 
-{% data reusables.repositories.navigate-to-repo %}
-{% data reusables.repositories.sidebar-settings %}
-3. En "Vista previa de las redes sociales", haz clic en **Editar**.
-    - Para agregar una nueva imagen, haz clic en **Cargar imagen...**.
-    - Para eliminar un imagen, haz clic en **Eliminar imagen**.
+{% data reusables.repositories.navigate-to-repo %} {% data reusables.repositories.sidebar-settings %}
+3. En "Vista previa social", haga clic en **Editar**.
+    - Para agregar una imagen nueva, haga clic en **Cargar una imagen...** .
+    - Para quitar una imagen, haga clic en **Quitar imagen**.
 
     ![Menú desplegable de vista previa de redes sociales](/assets/images/help/repository/social-preview.png)
 
-## About transparency
+## Acerca de la transparencia
 
-We support PNG images with transparency. Many communication platforms support a dark mode, so using a transparent social preview may be beneficial. The transparent image below is acceptable on a dark background; however, this may not always be the case.
+Se admiten imágenes PNG con transparencia. Muchas plataformas de comunicación admiten un modo oscuro, por lo que el uso de una vista previa social transparente puede ser beneficioso. La imagen transparente siguiente es aceptable sobre un fondo oscuro; pero es posible que no siempre sea así. 
 
-When using an image with transparency, keep in mind how it may look on different color backgrounds or platforms that don't support transparency.
+Al usar una imagen con transparencia, tenga en cuenta cómo puede verse sobre diferentes fondos de color o en plataformas que no admiten la transparencia.
 
 {% tip %}
 
-**Tip:** If you aren't sure, we recommend using an image with a solid background.
+**Sugerencia:** Si no está seguro, se recomienda usar una imagen con un fondo sólido.
 {% endtip %}
 
-![Social preview transparency](/assets/images/help/repository/social-preview-transparency.png)
+![Transparencia de la vista previa social](/assets/images/help/repository/social-preview-transparency.png)

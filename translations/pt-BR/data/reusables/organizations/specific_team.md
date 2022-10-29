@@ -1,8 +1,8 @@
-1. Abaixo do nome da sua organização, clique em
-{% octicon "people" aria-label="The people icon" %} **Teams**.
-  {% ifversion fpt or ghes > 3.2 or ghec %}
-  ![Guia equipes](/assets/images/help/organizations/organization-teams-tab-with-overview.png)
+1. Under your organization name, click {% octicon "people" aria-label="The people icon" %} **Teams**.
+  {% ifversion fpt or ghes or ghec %}
+  ![Teams tab](/assets/images/help/organizations/organization-teams-tab-with-overview.png)
   {% else %}
-  ![Guia equipes](/assets/images/help/organizations/organization-teams-tab.png)
+  ![Teams tab](/assets/images/help/organizations/organization-teams-tab.png)
   {% endif %}
-1. Na aba Teams (Equipes), clique no nome da equipe. ![Lista das equipes da organização](/assets/images/help/teams/click-team-name.png)
+1. On the Teams tab, click the name of the team.
+  ![List of the organization's teams](/assets/images/help/teams/click-team-name.png)

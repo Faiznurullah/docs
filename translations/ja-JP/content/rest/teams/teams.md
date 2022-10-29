@@ -1,6 +1,6 @@
 ---
-title: Team
-intro: Team APIを使うと、GitHub Organization内のTeamの作成や管理ができます。
+title: Teams
+intro: Teams API を使用すると、GitHub Organization 内で Team を作成および管理できます。
 versions:
   fpt: '*'
   ghes: '*'
@@ -9,6 +9,13 @@ versions:
 topics:
   - API
 miniTocMaxHeadingLevel: 3
+ms.openlocfilehash: e81144e2a4141195d67b16dcf80bfa47da2285e5
+ms.sourcegitcommit: fcf3546b7cc208155fb8acdf68b81be28afc3d2d
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 09/10/2022
+ms.locfileid: '145119078'
 ---
+## Teams API について
 
-この API は、Team の [Organization](/rest/reference/orgs) の、認証済みメンバーのみが利用できます。 OAuth のアクセストークンは、 `read:org` [スコープ](/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/)を必要とします。 {% data variables.product.prodname_dotcom %} は、Team の `name` からTeam の `slug` を生成します。
+{% data reusables.organizations.team-api %}

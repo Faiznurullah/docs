@@ -1,5 +1,7 @@
 ---
-title: Miembros
+title: Miembros del equipo
+allowTitleToDifferFromFilename: true
+shortTitle: Members
 intro: ''
 versions:
   fpt: '*'
@@ -9,14 +11,20 @@ versions:
 topics:
   - API
 miniTocMaxHeadingLevel: 3
+ms.openlocfilehash: 9f2e4a1bee298bddf1d1712c78b2bac41f15c27e
+ms.sourcegitcommit: 5b1461b419dbef60ae9dbdf8e905a4df30fc91b7
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 09/10/2022
+ms.locfileid: '147879394'
 ---
+## Acerca de la API de miembros del equipo
 
-Esta API solo está disponible para los miembros autenticados de la organization del equipo. Los tokens de acceso de OAuth requieren el [alcance](/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/) `read:org`.
+{% data reusables.organizations.team-api %}
 
-{% ifversion fpt or ghes or ghec %}
-{% note %}
+{% ifversion fpt or ghes or ghec %} {% note %}
 
-**Nota:** Cuando configuras la sincornizacion de equipos para un equipo con el proveedor de identidad (IdP) de tu organización, verás un error si intentas utilizar la API para hacer cambios en la membrecía de dicho equipo. Si tienes acceso para administrar las membrecías de usuario en tu IdP, puedes administrar la membrecía del equipo de GitHub a través de tu proveedor de identidad, lo cual agrega y elimina automáticamente a los miembros en una organización. Para obtener más información, consulta la sección "<a href="/organizations/managing-saml-single-sign-on-for-your-organization/managing-team-synchronization-for-your-organization" class="dotcom-only">Sincronizar equipos entre tu proveedor de identidad y GitHub</a>".
+**Nota:** Al configurar la sincronización de equipos para un equipo con el proveedor de identidades (IdP) de la organización, verá un error si intenta utilizar la API para realizar cambios en la pertenencia del equipo. Si tienes acceso para administrar las membrecías de usuario en tu IdP, puedes administrar la membrecía del equipo de GitHub a través de tu proveedor de identidad, lo cual agrega y elimina automáticamente a los miembros en una organización. Para más información, vea "[Sincronización de equipos entre el proveedor de identidades y GitHub](/enterprise-cloud@latest/organizations/managing-saml-single-sign-on-for-your-organization/managing-team-synchronization-for-your-organization)".
 
 {% endnote %}
 

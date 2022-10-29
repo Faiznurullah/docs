@@ -1,63 +1,68 @@
 ---
-title: Configuring notifications in GitHub Desktop
-shortTitle: Configurar notificações
-intro: '{% data variables.product.prodname_desktop %} will keep you up-to-date with notifications about events that occur in your pull request branch.'
+title: Configurar notificações no GitHub Desktop
+shortTitle: Configuring notifications
+intro: 'O {% data variables.product.prodname_desktop %} manterá você atualizado com notificações sobre os eventos que ocorrem no branch de solicitação de pull.'
 versions:
   fpt: '*'
+ms.openlocfilehash: e7d99c4c81b64facae41b7697cde9d454e15e96a
+ms.sourcegitcommit: 47bd0e48c7dba1dde49baff60bc1eddc91ab10c5
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/05/2022
+ms.locfileid: '147060430'
 ---
+## Sobre notificações no {% data variables.product.prodname_desktop %}
 
-## About notifications in {% data variables.product.prodname_desktop %}
+O {% data variables.product.prodname_desktop %} mostrará uma notificação do sistema para eventos que ocorrerem no repositório selecionado. As notificações serão mostradas quando:
 
-{% data variables.product.prodname_desktop %} will show a system notification for events that occur in the currently selected repository. Notifications will be shown when:
+- Houver falha nas verificações de solicitação de pull.
+- Uma revisão de solicitação de pull for deixada com um comentário, uma aprovação ou alterações solicitadas.
 
-- Pull request checks have failed.
-- A pull request review is left with a comment, approval, or requested changes.
+Ao clicar na notificação, o aplicativo mudará o para o {% data variables.product.prodname_desktop %} e fornecerá informações mais detalhadas.
 
-Clicking the notification will switch application focus to {% data variables.product.prodname_desktop %} and provide more detailed information.
+## Notificações sobre falhas de verificação de solicitação de pull
 
-## Notifications about pull request check failures
+Quando forem feitas alterações em um branch de solicitação de pull, você receberá uma notificação se as verificações falharem.
 
-When changes are made to a pull request branch, you will receive a notification if the checks fail.
+![Notificação de falha nas verificações de solicitação de pull](/assets/images/help/desktop/pull-request-checks-failed-notification.png)
 
-![pull request checks failed notification](/assets/images/help/desktop/pull-request-checks-failed-notification.png)
+Ao clicar na notificação, uma caixa de diálogo com detalhes sobre as verificações será exibida. Depois de examinar por que as verificações falharam, você pode executar novamente as verificações ou alternar rapidamente para o branch de solicitação de pull para começar a corrigir os erros. Para saber mais, confira "[Exibir e executar novamente verificações no GitHub Desktop](/desktop/contributing-and-collaborating-using-github-desktop/working-with-your-remote-repository-on-github-or-github-enterprise/viewing-and-re-running-checks-in-github-desktop)".
 
-Clicking the notification will display a dialog with details about the checks. Once you've reviewed why the checks have failed, you can re-run the checks, or quickly switch to the pull request branch to get started on fixing the errors. For more information, see "[Viewing and re-running checks in GitHub Desktop](/desktop/contributing-and-collaborating-using-github-desktop/working-with-your-remote-repository-on-github-or-github-enterprise/viewing-and-re-running-checks-in-github-desktop)."
+![Caixa de diálogo de verificações com falha](/assets/images/help/desktop/checks-failed-dialog.png)
+## Notificações para revisões de solicitação de pull
 
-![checks failed dialog](/assets/images/help/desktop/checks-failed-dialog.png)
-## Notifications for pull request reviews
+O {% data variables.product.prodname_desktop %} exibirá uma notificação do sistema quando um colega de equipe aprovar, comentar ou solicitar alterações em sua solicitação de pull. Confira "[Sobre revisões de solicitação de pull](/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews)" para obter mais informações sobre revisões de solicitação de pull.
 
-{% data variables.product.prodname_desktop %} will surface a system notification when a teammate has approved, commented, or requested changes in your pull request. See "[About pull request reviews](/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews)" for more information on pull request reviews.
+![Notificação de revisão de solicitação de pull](/assets/images/help/desktop/pull-request-review-notification.png)
 
-![Pull request review notification](/assets/images/help/desktop/pull-request-review-notification.png)
+Ao clicar na notificação, o aplicativo mudará o para o {% data variables.product.prodname_desktop %} e fornecerá mais contexto para o comentário de revisão de solicitação de pull.
 
-Clicking the notification will switch application focus to {% data variables.product.prodname_desktop %} and provide more context for the pull request review comment.
+![Caixa de diálogo de revisão de solicitação pull](/assets/images/help/desktop/pull-request-review-dialog.png)
+## Habilitar notificações
 
-![pull request review dialog](/assets/images/help/desktop/pull-request-review-dialog.png)
-## Enabling notifications
-
-If system notifications are disabled for {% data variables.product.prodname_desktop %} you can follow the steps below to enable them.
+Se as notificações do sistema estiverem desabilitadas no {% data variables.product.prodname_desktop %} você poderá seguir as etapas abaixo para habilitá-las.
 
 {% mac %}
 
-1. Click the **Apple** menu, then select **System Preferences**.
-2. Select **Notifications & Focus**.
-3. Select **{% data variables.product.prodname_desktop %}** from the list of applications.
-4. Click **Allow Notifications**.
+1. Clique no menu da **Apple** e selecione **Preferências do Sistema**.
+2. Selecione **Notificações e Foco**.
+3. Selecione **{% data variables.product.prodname_desktop %}** na lista de aplicativos.
+4. Clique em **Permitir Notificações**.
 
-![macOS Notifications & Focus](/assets/images/help/desktop/mac-enable-notifications.png)
+![Foco e Notificações do macOS](/assets/images/help/desktop/mac-enable-notifications.png)
 
-For more information about macOS system notifications, see "[Use notifications on your Mac](https://support.apple.com/en-us/HT204079)."
+Para obter mais informações sobre notificações do sistema do macOS, confira "[Use notificações em seu Mac](https://support.apple.com/en-us/HT204079)".
 
 {% endmac %}
 
 {% windows %}
 
-1. Open the **Start** menu, then select **Settings**.
-2. Select **System**, then click **Notifications**.
-3. Find **{% data variables.product.prodname_desktop %}** in the application list and click **On**.
+1. Abra o menu **Iniciar** e selecione **Configurações**.
+2. Selecione **Sistema** e clique em **Notificações**.
+3. Localize **{% data variables.product.prodname_desktop %}** na lista de aplicativos e clique em **Ativar**.
 
-![Enable Windows Notifications](/assets/images/help/desktop/windows-enable-notifications.png)
+![Habilitar notificações no Windows](/assets/images/help/desktop/windows-enable-notifications.png)
 
-For more information about Windows system notifications, see "[Change notification settings in Windows](https://support.microsoft.com/en-us/windows/change-notification-settings-in-windows-8942c744-6198-fe56-4639-34320cf9444e)."
+Para obter mais informações sobre notificações do sistema no Windows, confira "[Alterar as configurações de notificação no Windows](https://support.microsoft.com/en-us/windows/change-notification-settings-in-windows-8942c744-6198-fe56-4639-34320cf9444e)".
 
 {% endwindows %}

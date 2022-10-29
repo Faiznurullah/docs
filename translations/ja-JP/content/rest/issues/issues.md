@@ -1,6 +1,6 @@
 ---
-title: Issue
-intro: Issues APIを使うと、Issueにアサインされた人、コメント、ラベル、マイルストーンを含め、Issueの表示と管理ができます。
+title: issue
+intro: ''
 versions:
   fpt: '*'
   ghes: '*'
@@ -9,15 +9,13 @@ versions:
 topics:
   - API
 miniTocMaxHeadingLevel: 3
+ms.openlocfilehash: 8d9d79c8f72199108dfbd1f3e2188d3956d06eeb
+ms.sourcegitcommit: 5f9527483381cfb1e41f2322f67c80554750a47d
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 09/11/2022
+ms.locfileid: '147882264'
 ---
+## Issue API について
 
-### Issue のカスタムメディアタイプ
-
-Issue についてサポートされているメディアタイプは次のとおりです。
-
-    application/vnd.github.VERSION.raw+json
-    application/vnd.github.VERSION.text+json
-    application/vnd.github.VERSION.html+json
-    application/vnd.github.VERSION.full+json
-
-メディアタイプの詳しい情報については、「[カスタムメディアタイプ](/rest/overview/media-types)」を参照してください。
+{% data reusables.pull_requests.issues-media-types %}

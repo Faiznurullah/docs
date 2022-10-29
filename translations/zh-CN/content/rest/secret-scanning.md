@@ -1,6 +1,6 @@
 ---
-title: 秘密扫描
-intro: Use the Secret scanning API to retrieve and update secret alerts from a repository.
+title: 机密扫描
+intro: 使用机密扫描 API 从存储库中检索和更新机密警报。
 versions:
   ghes: '*'
   ghae: '*'
@@ -10,16 +10,20 @@ topics:
 miniTocMaxHeadingLevel: 3
 redirect_from:
   - /rest/reference/secret-scanning
+ms.openlocfilehash: d17aa63bb3d7e71adb310c66cabb05a83776b78f
+ms.sourcegitcommit: fcf3546b7cc208155fb8acdf68b81be28afc3d2d
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/10/2022
+ms.locfileid: '147880122'
 ---
-
 {% data reusables.secret-scanning.api-beta %}
 
-## About the Secret scanning API
+## 关于机密扫描 API
 
-{% data variables.product.prodname_secret_scanning %} API 可让您{% ifversion fpt or ghec or ghes > 3.1 or ghae %}：
+使用 {% data variables.product.prodname_secret_scanning %} API，你可以：
 
-- Enable or disable {% data variables.product.prodname_secret_scanning %}{% if secret-scanning-push-protection %} and push protection{% endif %} for a repository. 更多信息请参阅“[存储库](/rest/reference/repos#update-a-repository)”，并展开 REST API 文档中的“`security_and_analysis` 对象的属性”部分。
-- Retrieve and update {% data variables.product.prodname_secret_scanning_GHAS %} alerts from a repository. For further details, see the sections below.
-{%- else %} retrieve and update {% data variables.product.prodname_secret_scanning %} alerts from a repository.{% endif %}
+- 为存储库启用或禁用 {% data variables.product.prodname_secret_scanning %}{% ifversion secret-scanning-push-protection %} 和推送保护{% endif %}。 有关详细信息，请参阅“[存储库](/rest/repos/repos#update-a-repository)”，并展开 REST API 文档中的“`security_and_analysis` 对象的属性”部分。
+- 从存储库检索和更新 {% data variables.product.prodname_secret_scanning_GHAS %} 警报。 有关更多详细信息，请参阅以下部分。
 
-有关 {% data variables.product.prodname_secret_scanning %} 的更多信息，请参阅“[关于 {% data variables.product.prodname_secret_scanning %}](/code-security/secret-security/about-secret-scanning)”。
+有关 {% data variables.product.prodname_secret_scanning %} 的详细信息，请参阅“[关于 {% data variables.product.prodname_secret_scanning %}](/code-security/secret-security/about-secret-scanning)”。

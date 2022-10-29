@@ -1,7 +1,7 @@
 ---
-title: Dependabot secrets
-shortTitle: 密码
-intro: 'With the {% data variables.product.prodname_dependabot %} secrets API, you can manage and control {% data variables.product.prodname_dependabot %} secrets for an organization or repository.'
+title: Dependabot 机密
+shortTitle: Secrets
+intro: '使用 {% data variables.product.prodname_dependabot %} 机密 API，可以管理和控制组织或存储库的 {% data variables.product.prodname_dependabot %} 机密。'
 topics:
   - API
 versions:
@@ -9,10 +9,15 @@ versions:
   ghes: '>=3.4'
   ghec: '*'
 allowTitleToDifferFromFilename: true
+ms.openlocfilehash: 0cabee9ace44e75d8fcd2ce81aa9d7583b39e59d
+ms.sourcegitcommit: 5f9527483381cfb1e41f2322f67c80554750a47d
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/11/2022
+ms.locfileid: '147882285'
 ---
+## 关于 {% data variables.product.prodname_dependabot %} 机密 API
 
-## About the {% data variables.product.prodname_dependabot %} secrets API
+{% data variables.product.prodname_dependabot %} 机密 API 允许你创建、更新、删除和检索有关加密机密的信息。 {% data reusables.actions.about-secrets %} 有关详细信息，请参阅“[管理 Dependabot 的加密机密](/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/managing-encrypted-secrets-for-dependabot)”。
 
-The {% data variables.product.prodname_dependabot %} secrets API lets you create, update, delete, and retrieve information about encrypted secrets. {% data reusables.actions.about-secrets %} For more information, see "[Managing encrypted secrets for Dependabot](/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/managing-encrypted-secrets-for-dependabot)."
-
-{% data reusables.actions.actions-authentication %} {% data variables.product.prodname_github_apps %} must have the `dependabot_secrets` permission to use this API. 经过身份验证的用户必须对仓库具有协作者权限才可创建、更新或读取密码。
+{% data reusables.actions.actions-authentication %} {% data variables.product.prodname_github_apps %} 必须具有 `dependabot_secrets` 权限才可使用此 API。 经过身份验证的用户必须对仓库具有协作者权限才可创建、更新或读取密码。
