@@ -17,12 +17,12 @@ redirect_from:
   - /admin/authentication/configuring-authentication-and-provisioning-for-your-enterprise-using-azure-ad
   - /admin/authentication/configuring-authentication-and-provisioning-with-your-identity-provider/configuring-authentication-and-provisioning-for-your-enterprise-using-azure-ad
   - /admin/identity-and-access-management/configuring-authentication-and-provisioning-with-your-identity-provider/configuring-authentication-and-provisioning-for-your-enterprise-using-azure-ad
-ms.openlocfilehash: 10b6fdaa2014836e7a709bc94920dea6331ed030
-ms.sourcegitcommit: f638d569cd4f0dd6d0fb967818267992c0499110
+ms.openlocfilehash: bfd93814b11066d6da2d87a2e1f0a8bd5461e93f
+ms.sourcegitcommit: ced661bdffebd0f96f6f76db109fbe31983448ba
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/25/2022
-ms.locfileid: '148107519'
+ms.lasthandoff: 11/16/2022
+ms.locfileid: '148167064'
 ---
 ## Acerca de la autenticación y el aprovisionamiento de usuarios con Azure AD
 
@@ -47,8 +47,6 @@ Para obtener más información sobre cómo administrar la identidad y el acceso 
 
 {%- ifversion scim-for-ghes %}
 - {% data reusables.saml.ghes-you-must-configure-saml-sso %} {%- endif %}
-
-- {% data reusables.saml.assert-the-administrator-attribute %} Para obtener más información sobre la inclusión del atributo `administrator` en la notificación de SAML de Azure AD, consulte [Procedimiento: Personalización de las notificaciones emitidas en el token SAML para aplicaciones empresariales](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-claims-customization) en Microsoft Docs.
 
 - {% data reusables.saml.create-a-machine-user %}
 
@@ -81,3 +79,7 @@ En el inquilino de Azure AD, agrega la aplicación para {% data variables.produ
 1. Después de asegurarte de que la conexión es correcta, en la parte superior de la página, haz clic en **Guardar**.
 
 {% endif %}
+
+1. Asigne un propietario de empresa para los datos {% data variables.product.product_name %} en Azure AD. El proceso que debes seguir depende de si configuraste el aprovisionamiento. Para obtener más información sobre los propietarios de empresas, consulta "[Roles en una empresa](/admin/user-management/managing-users-in-your-enterprise/roles-in-an-enterprise#enterprise-owners)".
+   - Si has configurado el aprovisionamiento, para conceder la propiedad empresarial del usuario en {% data variables.product.product_name %}, asigna el rol de propietario de empresa al usuario de Azure AD.
+   - Si no configuraste el aprovisionamiento, para conceder la propiedad empresarial del usuario en {% data variables.product.product_name %}, incluye el atributo `administrator` con el valor de `true` en la aserción de SAML para la cuenta de usuario en el IdP. Para obtener más información sobre la inclusión del atributo `administrator` en la notificación de SAML de Azure AD, consulta: [Procedimiento: personalización de las notificaciones emitidas en el token SAML para aplicaciones empresariales](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-claims-customization) en Microsoft Docs.

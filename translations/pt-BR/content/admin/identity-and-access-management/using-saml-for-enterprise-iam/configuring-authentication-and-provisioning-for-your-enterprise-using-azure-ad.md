@@ -17,12 +17,12 @@ redirect_from:
   - /admin/authentication/configuring-authentication-and-provisioning-for-your-enterprise-using-azure-ad
   - /admin/authentication/configuring-authentication-and-provisioning-with-your-identity-provider/configuring-authentication-and-provisioning-for-your-enterprise-using-azure-ad
   - /admin/identity-and-access-management/configuring-authentication-and-provisioning-with-your-identity-provider/configuring-authentication-and-provisioning-for-your-enterprise-using-azure-ad
-ms.openlocfilehash: 10b6fdaa2014836e7a709bc94920dea6331ed030
-ms.sourcegitcommit: f638d569cd4f0dd6d0fb967818267992c0499110
+ms.openlocfilehash: bfd93814b11066d6da2d87a2e1f0a8bd5461e93f
+ms.sourcegitcommit: ced661bdffebd0f96f6f76db109fbe31983448ba
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2022
-ms.locfileid: '148107506'
+ms.lasthandoff: 11/16/2022
+ms.locfileid: '148167057'
 ---
 ## Sobre autenticação e provisionamento de usuário com Azure AD
 
@@ -47,8 +47,6 @@ Para obter mais informações de como gerenciar a identidade e o acesso da empre
 
 {%- ifversion scim-for-ghes %}
 - {% data reusables.saml.ghes-you-must-configure-saml-sso %} {%- endif %}
-
-- {% data reusables.saml.assert-the-administrator-attribute %} Para obter mais informações sobre como incluir o atributo `administrator` na declaração SAML do Azure AD, confira [Como personalizar declarações emitidas no token SAML para aplicativos empresariais](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-claims-customization) no Microsoft Docs.
 
 - {% data reusables.saml.create-a-machine-user %}
 
@@ -81,3 +79,7 @@ No locatário do Azure AD, adicione o aplicativo do {% data variables.product.pr
 1. Depois de garantir uma conexão bem-sucedida, na parte superior da página, clique em **Salvar**.
 
 {% endif %}
+
+1. Atribua um proprietário da empresa para {% data variables.product.product_name %} no Azure AD. O processo que você deve seguir depende se você configurou o provisionamento. Para obter mais informações sobre proprietários de empresas, confira "[Funções em uma empresa](/admin/user-management/managing-users-in-your-enterprise/roles-in-an-enterprise#enterprise-owners)".
+   - Se você configurou o provisionamento, para conceder a propriedade corporativa do usuário em {% data variables.product.product_name %}, atribua a função de proprietário da empresa ao usuário no Azure AD.
+   - Se você não configurou o provisionamento, para conceder a propriedade corporativa ao usuário em {% data variables.product.product_name %}, inclua o atributo `administrator` na declaração SAML para a conta de usuário no IdP, com o valor de `true`. Para obter mais informações sobre como incluir o atributo `administrator` na declaração SAML do Azure AD, confira [Como personalizar declarações emitidas no token SAML para aplicativos empresariais](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-claims-customization) no Microsoft Docs.

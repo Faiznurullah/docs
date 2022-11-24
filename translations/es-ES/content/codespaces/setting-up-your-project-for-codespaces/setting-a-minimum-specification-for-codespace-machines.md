@@ -10,19 +10,20 @@ type: how_to
 topics:
   - Codespaces
   - Set up
-product: '{% data reusables.gated-features.codespaces %}'
-ms.openlocfilehash: 623b50a9423d855f807e2b480882f1e5eb2c479f
-ms.sourcegitcommit: 27882d9b3f19979c817c25952a2fb4dc4c6f0a65
+ms.openlocfilehash: b7eeaac84721ff1d9ceab663957b1615952b0623
+ms.sourcegitcommit: e8c012864f13f9146e53fcb0699e2928c949ffa8
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/27/2022
-ms.locfileid: '148113861'
+ms.lasthandoff: 11/09/2022
+ms.locfileid: '148159169'
 ---
 ## Información general
 
-Cada codespace que crees se hospeda en una máquina virtual independiente, y normalmente puedes elegir entre diferentes tipos de máquinas virtuales. Cada tipo de máquina tiene recursos diferentes (núcleos de procesador, memoria, almacenamiento) y, de forma predeterminada, se usa el tipo de máquina con los recursos mínimos. Para obtener más información, consulte "[Cambio del tipo de máquina para el codespace](/codespaces/customizing-your-codespace/changing-the-machine-type-for-your-codespace#about-machine-types)".
+Cada codespace que creas se hospeda en una máquina virtual independiente. Al crear un codespace a partir de un repositorio, normalmente puedes elegir entre diferentes tipos de máquinas virtuales. Cada tipo de máquina tiene recursos diferentes (núcleos de procesador, memoria, almacenamiento) y, de forma predeterminada, se usa el tipo de máquina con los recursos mínimos. Para obtener más información, consulte "[Cambio del tipo de máquina para el codespace](/codespaces/customizing-your-codespace/changing-the-machine-type-for-your-codespace#about-machine-types)".
 
 Si tu proyecto necesita cierto nivel de potencia de cómputo, puedes configurar {% data variables.product.prodname_github_codespaces %} para que solo los tipos de máquina que cumplan con estos requisitos se puedan usar de forma predeterminada o los puedan seleccionar los usuarios. Esta configuración se realiza en un archivo `devcontainer.json`.
+
+{% data reusables.codespaces.machine-types-for-unpublished-codespaces %}
 
 {% note %}
 
@@ -45,7 +46,7 @@ Si tu proyecto necesita cierto nivel de potencia de cómputo, puedes configurar 
 
    Puede especificar una de las opciones o todas: `cpus`, `memory` y `storage`.
    
-   Para verificar las especificaciones de los tipos de máquina de {% data variables.product.prodname_github_codespaces %} que actualmente están disponibles para tu repositorio, realiza el proceso de crear un codespace hasta que veas la elección de tipos de máquina. Para obtener más información, consulte "[Crear un codespace](/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace)".
+   Para verificar las especificaciones de los tipos de máquina de {% data variables.product.prodname_github_codespaces %} que actualmente están disponibles para tu repositorio, realiza el proceso de crear un codespace hasta que veas la elección de tipos de máquina. Para obtener más información, consulta "[Creación de un codespace para un repositorio](/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository#creating-a-codespace-for-a-repository)".
    
 1. Guarda el archivo y confirma tus cambios a la rama requerida del repositorio.
 

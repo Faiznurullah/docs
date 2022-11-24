@@ -12,12 +12,12 @@ versions:
 topics:
   - Organizations
   - Teams
-ms.openlocfilehash: e18c95475e06db0623aee67515eeb6d8a1ee641f
-ms.sourcegitcommit: e98b752895109965b32cb277610985da5799f8a1
+ms.openlocfilehash: 0269554568c8781706a8d79600f5b6191d0b9598
+ms.sourcegitcommit: 1529de77bfcbe45519131b5f5fb3ab319758c2d2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/01/2022
-ms.locfileid: '148127639'
+ms.lasthandoff: 11/14/2022
+ms.locfileid: '148164335'
 ---
 ## Acerca de las organizaciones
 
@@ -33,7 +33,7 @@ Puedes configurar la organización para satisfacer las necesidades únicas del g
 
 Para proteger la seguridad de la organización, puedes aplicar los requisitos de seguridad y revisar el registro de auditoría de esta. Para obtener más información, consulte "[Protección de la organización](/organizations/keeping-your-organization-secure)".
 
-{% data reusables.organizations.org-ownership-recommendation %} Para obtener más información, vea "[Mantener la continuidad de la propiedad para su organización](/organizations/managing-peoples-access-to-your-organization-with-roles/maintaining-ownership-continuity-for-your-organization)".
+Para obtener información sobre cómo usar organizaciones de forma más eficaz, consulta "[Procedimientos recomendados para organizaciones](/organizations/collaborating-with-groups-in-organizations/best-practices-for-organizations)".
 
 {% ifversion fpt or ghec %}
 ## Acerca de la disponibilidad de características

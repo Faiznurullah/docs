@@ -6,18 +6,20 @@ intro: "Puedes usar {% data variables.product.prodname_github_codespaces %} como
 versions:
   fpt: '*'
 permissions: 'Organization owners who are admins for a classroom can enable {% data variables.product.prodname_github_codespaces %} for their organization and integrate {% data variables.product.prodname_github_codespaces %} as the supported editor for an assignment. {% data reusables.classroom.classroom-admins-link %}'
-ms.openlocfilehash: 062d7dc201a1f3c6ac1ee8bd92220b31c89f33b8
-ms.sourcegitcommit: ca040a1871ab5e929b596686ef955b02c5afa051
+ms.openlocfilehash: 6794d20b9ea0153b3baf4bee1a08c68b2ba17456
+ms.sourcegitcommit: e8c012864f13f9146e53fcb0699e2928c949ffa8
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2022
-ms.locfileid: '148131023'
+ms.lasthandoff: 11/09/2022
+ms.locfileid: '148158881'
 ---
 ## Acerca de {% data variables.product.prodname_github_codespaces %}
 
 {% data variables.product.prodname_github_codespaces %} es un entorno de desarrollo instantáneo basado en la nube que usa un contenedor para proporcionar lenguajes comunes, herramientas y utilidades para el desarrollo. {% data variables.product.prodname_github_codespaces %} también es configurable, lo cual te permite crear un entorno de desarrollo personalizado que sea igual para todos los usuarios del proyecto. Para obtener más información, consulta "[Introducción a {% data variables.product.prodname_github_codespaces %}](/codespaces/overview)".
 
-Una vez que {% data variables.product.prodname_github_codespaces %} esté habilitado en una organización o empresa, los usuarios podrán crear un codespace desde cualquier rama o confirmación de un repositorio de la organización o empresa y empezar a desarrollar mediante el uso de recursos de proceso basados en la nube. Puedes conectarte a un codespace desde el explorador o localmente mediante Visual Studio Code. {% data reusables.codespaces.links-to-get-started %}
+Una vez que {% data variables.product.prodname_github_codespaces %} esté habilitado en una organización o empresa, los usuarios podrán crear un codespace desde cualquier rama o confirmación de un repositorio de la organización o empresa y empezar a desarrollar mediante el uso de recursos de proceso basados en la nube. Puedes conectarte a un codespace desde el explorador o localmente mediante Visual Studio Code. 
+
+{% data reusables.codespaces.links-to-get-started %}
 
 El establecimiento de {% data variables.product.prodname_github_codespaces %} como editor preferido para una asignación de GitHub Classroom resulta beneficioso tanto para los alumnos como para los profesores. {% data variables.product.prodname_github_codespaces %} es una buena opción para los alumnos que usan dispositivos prestados o sin acceso a una configuración del IDE local, ya que cada codespace está basado en la nube y no requiere ninguna configuración local. Los alumnos pueden iniciar un codespace para un repositorio de tareas en Visual Studio Code directamente en el explorador y empezar a desarrollar inmediatamente sin necesidad de ninguna configuración adicional.  
 
@@ -26,6 +28,14 @@ En el caso de las tareas con entornos de configuración complejos, los profesore
 {% note %}
 
 **Nota**: Los codespaces individuales se eliminan automáticamente si se detienen y dejan sin usar durante un período prolongado. Para más información, consulta "[Configuración de la eliminación automática de los codespaces](/codespaces/customizing-your-codespace/configuring-automatic-deletion-of-your-codespaces)".
+
+{% endnote %}
+
+{% data reusables.education.student-codespaces-benefit %}
+
+{% note %}
+
+**Nota**: {% data reusables.education.note-on-student-codespaces-usage %} 
 
 {% endnote %}
 
@@ -41,7 +51,7 @@ Una vez que hayas confirmado que eres un profesor verificado, visita [{% data va
 
 Si cumples los requisitos para obtener la ventaja {% data variables.product.prodname_codespaces %} Education al habilitar {% data variables.product.prodname_github_codespaces %} en {% data variables.product.prodname_classroom %} para la organización, GitHub agrega automáticamente una directiva de codespace para restringir los tipos de máquina de todos los codespaces de la organización a dos máquinas principales. Esto ayuda a aprovechar al máximo el uso gratuito de{% data variables.product.prodname_github_codespaces %}. De todos modos, puedes cambiar o quitar estas directivas en la configuración de la organización. Para obtener más información, consulte "[Restringir el acceso a los tipos de máquina](/codespaces/managing-codespaces-for-your-organization/restricting-access-to-machine-types)".
 
-Cuando la ventaja {% data variables.product.prodname_codespaces %} Education deje de estar en versión beta, si tu organización supera su asignación gratuita para el uso de {% data variables.product.prodname_github_codespaces %}, se te facturará por el uso adicional. Para más información, consulta "[Acerca de la facturación de {% data variables.product.prodname_github_codespaces %}](/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#about-billing-for-codespaces)".
+Cuando la ventaja {% data variables.product.prodname_codespaces %} Education deje de estar en versión beta, si tu organización supera su asignación gratuita para el uso de {% data variables.product.prodname_github_codespaces %}, se te facturará por el uso adicional. Para más información, consulta "[Acerca de la facturación de {% data variables.product.prodname_github_codespaces %}](/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces)".
 
 ## Habilitar los {% data variables.product.prodname_codespaces %} para tu organización
 
@@ -85,7 +95,7 @@ Cuando un alumno abre una tarea, el archivo LÉAME del repositorio indica qué I
 
 ![Captura de pantalla de la nota de Codespaces en el archivo LÉAME sobre el repositorio de la tarea de los alumnos](/assets/images/help/classroom/student-codespaces-readme-link.png)
 
-Los alumnos pueden iniciar un codespace nuevo o existente haciendo clic en el botón **Abrir en GitHub Codespace** en el archivo LÉAME, o haciendo clic en el botón **{% octicon "code" aria-label="The code icon" %} Código** en la página principal del repositorio de asignaciones, luego seleccione la pestaña **Codespaces**. En la pestaña **Codespaces** puede seleccionar un codespace existente o crear uno nuevo. Para obtener más información, consulte "[Crear un codespace](/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace)".
+Los alumnos pueden iniciar un codespace nuevo o existente haciendo clic en el botón **Abrir en GitHub Codespace** en el archivo LÉAME, o haciendo clic en el botón **{% octicon "code" aria-label="The code icon" %} Código** en la página principal del repositorio de asignaciones, luego seleccione la pestaña **Codespaces**. En la pestaña **Codespaces** puede seleccionar un codespace existente o crear uno nuevo. Para obtener más información, consulta "[Creación de un codespace para un repositorio](/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository#creating-a-codespace-for-a-repository)".
 
 ![Inicio de un nuevo codespace en el repositorio de tareas](/assets/images/help/classroom/student-launch-new-codespace.png)
 
@@ -93,4 +103,4 @@ Los profesores pueden ver el codespace de cada alumno para una tarea en la pági
 
 ![Información general de tareas del profesor con los codespaces de los alumnos](/assets/images/help/classroom/teacher-assignment-view-with-codespaces.png)
 
-Cuando te conectes a un codespace a través de un explorador, se habilitará automáticamente el guardado automático. Si quieres guardar los cambios en el repositorio, deberás confirmar los cambios e insertarlos en una rama remota. Si dejas que el codespace se ejecute sin interacción durante 30 minutos de forma predeterminada, el tiempo de espera se agotará y el codespace dejará de ejecutarse. Los datos se conservarán desde la última vez que hayas realizado un cambio. Para más información sobre el ciclo de vida de un codespace, consulte "[Ciclo de vida de Codespaces](/codespaces/developing-in-codespaces/codespaces-lifecycle)".
+Cuando te conectes a un codespace a través de un explorador, se habilitará automáticamente el guardado automático. Si quieres guardar los cambios en el repositorio, deberás confirmar los cambios e insertarlos en una rama remota. Si dejas que el codespace se ejecute sin interacción durante 30 minutos de forma predeterminada, el tiempo de espera se agotará y el codespace dejará de ejecutarse. Los datos se conservarán desde la última vez que hayas realizado un cambio. Para obtener más información sobre el ciclo de vida de un codespace, consulta "[Ciclo de vida de un codespace](/codespaces/developing-in-codespaces/the-codespace-lifecycle)".
