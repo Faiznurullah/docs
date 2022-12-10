@@ -23,7 +23,6 @@ prodname_ghe_cloud: 'GitHub Enterprise Cloud'
 prodname_ghe_managed: 'GitHub AE'
 prodname_ghe_one: 'GitHub One'
 prodname_docs: 'GitHub Docs'
-
 prodname_free_user: 'GitHub Free'
 prodname_pro: 'GitHub Pro'
 prodname_team: 'GitHub Team'
@@ -224,6 +223,10 @@ prodname_arctic_vault: 'Arctic Code Vault'
 # GitHub Copilot
 prodname_copilot: 'GitHub Copilot'
 prodname_copilot_short: 'Copilot'
+prodname_copilot_for_business: 'GitHub Copilot for Business'
+prodname_copilot_for_individuals: 'GitHub Copilot for Individuals'
+prodname_copilot_business_short: 'Copilot for Business'
+prodname_copilot_individuals_short: 'Copilot for Individuals'
 
 # Command Palette
 prodname_command_palette: 'GitHub Command Palette'

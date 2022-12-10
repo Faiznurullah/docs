@@ -8,12 +8,12 @@ versions:
   ghae: '*'
   ghec: '*'
 shortTitle: Quickstart
-ms.openlocfilehash: 207b91e821037a6eb61ae7bc9b18c98d8b14fdd2
-ms.sourcegitcommit: 505b84dc7227e8a5d518a71eb5c7eaa65b38ce0e
+ms.openlocfilehash: 887c4ee6c5e6b3e2c391c2d5754cfcb2787e4b86
+ms.sourcegitcommit: cfe91073c844cb762131b2de9fb41f7f9db792fc
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/10/2022
-ms.locfileid: '147878955'
+ms.lasthandoff: 11/24/2022
+ms.locfileid: '148181255'
 ---
 {% data reusables.actions.enterprise-github-hosted-runners %}
 
@@ -24,10 +24,10 @@ In diesem Leitfaden erstellst du einen {% data variables.product.prodname_action
 ## Veröffentlichen deines Pakets
 
 1. Erstelle ein neues Repository für {% data variables.product.prodname_dotcom %}, indem du `.gitignore` für Node hinzufügst. Weitere Informationen findest du unter [Erstellen eines neuen Repositorys](/github/creating-cloning-and-archiving-repositories/creating-a-new-repository).
-2. Klone das Repository auf deinen lokalen Computer.
+2. Klonen Sie das Repository auf Ihren lokalen Computer.
     ```shell
-    $ git clone https://{% ifversion ghes or ghae %}<em>YOUR-HOSTNAME</em>{% else %}github.com{% endif %}/<em>YOUR-USERNAME</em>/<em>YOUR-REPOSITORY</em>.git
-    $ cd <em>YOUR-REPOSITORY</em>
+    $ git clone https://{% ifversion ghes or ghae %}YOUR-HOSTNAME{% else %}github.com{% endif %}/YOUR-USERNAME/YOUR-REPOSITORY.git
+    $ cd YOUR-REPOSITORY
     ```
 3. Erstelle eine `index.js` Datei, und füge eine einfache Benachrichtigung hinzu, um „Hallo Welt!“ zu sagen.
     {% raw %}
@@ -40,9 +40,9 @@ In diesem Leitfaden erstellst du einen {% data variables.product.prodname_action
     ```shell
     $ npm init
       ...
-      package name: <em>@YOUR-USERNAME/YOUR-REPOSITORY</em>
+      package name: @YOUR-USERNAME/YOUR-REPOSITORY
       ...
-      test command: <em>exit 0</em>
+      test command: exit 0
       ...    
     ```
     {% endraw %}
@@ -69,7 +69,7 @@ In diesem Leitfaden erstellst du einen {% data variables.product.prodname_action
           - uses: {% data reusables.actions.action-checkout %}
           - uses: {% data reusables.actions.action-setup-node %}
             with:
-              node-version: 12
+              node-version: 16
           - run: npm ci
           - run: npm test
 
@@ -83,7 +83,7 @@ In diesem Leitfaden erstellst du einen {% data variables.product.prodname_action
           - uses: {% data reusables.actions.action-checkout %}
           - uses: {% data reusables.actions.action-setup-node %}
             with:
-              node-version: 12
+              node-version: 16
               registry-url: {% ifversion ghes or ghae %}https://npm.YOUR-HOSTNAME.com/{% else %}https://npm.pkg.github.com/{% endif %}
           - run: npm ci
           - run: npm publish
@@ -93,7 +93,7 @@ In diesem Leitfaden erstellst du einen {% data variables.product.prodname_action
 8. Teile NPM mit, in welchem Bereich und welcher Registrierung Pakete mit einer der folgenden Methoden veröffentlicht werden sollen:
    - Füge eine NPM-Konfigurationsdatei für das Repository hinzu, indem du eine `.npmrc`-Datei im Stammverzeichnis mit folgendem Inhalt erstellst: {% raw %}
       ```shell
-      <em>@YOUR-USERNAME</em>:registry=https://npm.pkg.github.com
+      @YOUR-USERNAME:registry=https://npm.pkg.github.com
       ```
       {% endraw %}
    - Bearbeite die `package.json`-Datei, und gib den `publishConfig`-Schlüssel an: {% raw %}
@@ -107,7 +107,7 @@ In diesem Leitfaden erstellst du einen {% data variables.product.prodname_action
     ```shell
     $ git add .github/workflows/release-package.yml
     # Also add the file you created or edited in the previous step.
-    $ git add <em>.npmrc or package.json</em>
+    $ git add .npmrc or package.json
     $ git commit -m "workflow to publish package"
     $ git push
     ```

@@ -16,12 +16,12 @@ versions:
 topics:
   - Repositories
 shortTitle: View files and track file changes
-ms.openlocfilehash: bc27fc67cfd18eb20f8c612b81f4d6dd5da20913
-ms.sourcegitcommit: 47bd0e48c7dba1dde49baff60bc1eddc91ab10c5
+ms.openlocfilehash: 7d34e776cb1747ee749531e49abf6f0e3d052b3b
+ms.sourcegitcommit: 82b1242de02ecc4bdec02a5b6d11568fb2deb1aa
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/05/2022
-ms.locfileid: '146680989'
+ms.lasthandoff: 11/21/2022
+ms.locfileid: '148179861'
 ---
 ## Anzeigen oder Kopieren des Rohdateiinhalts
 
@@ -92,3 +92,7 @@ git config blame.ignoreRevsFile .git-blame-ignore-revs
 ```
 
 {% endif %}
+
+## Umgehen von `.git-blame-ignore-revs` in der Blame-Ansicht
+
+Wenn in der Blame-Ansicht für eine Datei **Überarbeitungen in .git-blame-ignore-revs werden ignoriert** angezeigt wird, kannst du `.git-blame-ignore-revs` umgehen und dennoch die normale Blame-Ansicht anzeigen. Füge in der URL `~` an den SHA an, und **Überarbeitungen in .git-blame-ignore-revs werden ignoriert** wird nicht mehr angezeigt.

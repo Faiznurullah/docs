@@ -16,12 +16,12 @@ topics:
   - Codespaces
   - Set up
   - Fundamentals
-ms.openlocfilehash: 0b47f0292eb3a13467a8227ac323d289f9712223
-ms.sourcegitcommit: e8c012864f13f9146e53fcb0699e2928c949ffa8
+ms.openlocfilehash: 646f8068e68040f1d12f8155c3ba9e2bdb84c2ca
+ms.sourcegitcommit: 7fb7ec2e665856fc5f7cd209b53bd0fb1c9bbc67
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/09/2022
-ms.locfileid: '148158773'
+ms.lasthandoff: 11/29/2022
+ms.locfileid: '148185091'
 ---
 ## Informationen zu Entwicklungscontainern
 
@@ -216,7 +216,7 @@ Du kannst die Standardschnittstelleneinstellungen für {% data variables.product
 
 ## Anwenden von Konfigurationsänderungen auf einen Codespace
 
-Änderungen an einer Konfiguration werden angewendet, wenn du das nächste Mal einen Codespace erstellst. Wenn du jedoch einen Codespace in einem Webbrowser, in {% data variables.product.prodname_vscode_shortname %} oder in einer JetBrains-IDE verwendest, kannst du Konfigurationsänderungen auf den aktuellen Codespace anwenden, indem du den Container neu erstellst.
+Änderungen an einer Konfiguration werden angewendet, wenn du das nächste Mal einen Codespace erstellst. Du kannst deine Änderungen jedoch auf einen vorhandenen Codespace anwenden, indem du den Container neu erstellst. Du kannst dies in einem Codespace im {% data variables.product.prodname_vscode_shortname %}-Webclient oder der Desktopanwendung tun, oder du kannst {% data variables.product.prodname_cli %} verwenden.
 
 ### Neuerstellen des Entwicklungscontainers im Webclient oder in der Desktopanwendung von {% data variables.product.prodname_vscode_shortname %}
 
@@ -229,15 +229,19 @@ Du kannst die Standardschnittstelleneinstellungen für {% data variables.product
    - Aktualisiere deine `devcontainer.json`-Datei, um die in den Protokollen identifizierten Fehler zu beheben.
    - Erstelle deinen Container neu, um die Änderungen anzuwenden. 
 
-### Neuerstellen des Entwicklungscontainers in einer JetBrains-IDE
+### Verwenden von {% data variables.product.prodname_cli %} zur Neuerstellung eines Entwicklungscontainers
 
-{% data reusables.codespaces.jetbrains-open-codespace-plugin %}
-1. Klicke im {% data variables.product.prodname_github_codespaces %}-Toolfenster auf das Symbol „Neu erstellen“.
+Wenn du eine Entwicklungscontainerkonfiguration außerhalb von VS Code (z. B. für {% data variables.product.prodname_dotcom_the_website %} oder in einer JetBrains-IDE) geändert hast, kannst du {% data variables.product.prodname_cli %} verwenden, um den Entwicklungscontainer für einen vorhandenen Codespace neu zu erstellen.
 
-   ![Screenshot: Schaltfläche zum Neuerstellen](/assets/images/help/codespaces/jetbrains-plugin-icon-rebuild.png)
+1. Gib in einem Terminal den folgenden Befehl ein:
 
-1. Klicke auf **Neu erstellen**, wenn du aufgefordert wirst, zu bestätigen, dass du den Entwicklungscontainer neu erstellen möchtest. 
-1. Öffne den Codespace erneut in deiner JetBrains-IDE.
+   ```
+   gh cs rebuild
+   ```
+
+   Deine Codespaces werden aufgelistet.
+
+1. Verwende die Pfeiltasten auf der Tastatur, um den erforderlichen Codespace zu markieren, und drücke dann die <kbd>EINGABETASTE</kbd>.
 
 
 ## Weiterführende Themen

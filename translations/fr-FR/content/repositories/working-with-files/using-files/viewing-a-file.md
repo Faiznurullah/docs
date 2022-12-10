@@ -16,12 +16,12 @@ versions:
 topics:
   - Repositories
 shortTitle: View files and track file changes
-ms.openlocfilehash: bc27fc67cfd18eb20f8c612b81f4d6dd5da20913
-ms.sourcegitcommit: 47bd0e48c7dba1dde49baff60bc1eddc91ab10c5
+ms.openlocfilehash: 7d34e776cb1747ee749531e49abf6f0e3d052b3b
+ms.sourcegitcommit: 82b1242de02ecc4bdec02a5b6d11568fb2deb1aa
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/05/2022
-ms.locfileid: '146680988'
+ms.lasthandoff: 11/21/2022
+ms.locfileid: '148179848'
 ---
 ## Affichage ou copie du contenu d’un fichier brut
 
@@ -92,3 +92,7 @@ git config blame.ignoreRevsFile .git-blame-ignore-revs
 ```
 
 {% endif %}
+
+## Contournement de `.git-blame-ignore-revs` dans l’affichage des blâmes
+
+Si l’affichage des blâmes d’un fichier indique **Révisions dans .git-blame-ignore-revs ignorées**, vous pouvez toujours contourner `.git-blame-ignore-revs` et consulter l’affichage des blâmes normal. Dans l’URL, ajoutez un `~` au SHA et les **Révisions dans .git-blame-ignore-revs ignorées** disparaîtront.
