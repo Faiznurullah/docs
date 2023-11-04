@@ -1,6 +1,6 @@
 ---
 title: database index-files
-versions:
+versions: # DO NOT MANUALLY EDIT. CHANGES WILL BE OVERWRITTEN BY A 🤖
   fpt: '*'
   ghae: '*'
   ghec: '*'
@@ -24,7 +24,7 @@ redirect_from:
 
 ## Synopsis
 
-```shell{:copy}
+```shell copy
 codeql database index-files --language=<lang> [--threads=<num>] [--ram=<MB>] [--extractor-option=<extractor-option-name=value>] <options>... -- <database>
 ```
 
@@ -40,14 +40,16 @@ the set of included files.
 The `--include`, `--exclude`, and `--prune` options all take glob
 patterns, which can use the following wildcard characters:
 
-*   A single "?" matches any character other than a forward/backward
-    slash;
-*   A single "\*" matches any number of characters other than a
-    forward/backward slash;
-*   The pattern "\*\*" matches zero or more complete directory
-    components.
+- A single "?" matches any character other than a forward/backward
+  slash;
+- A single "\*" matches any number of characters other than a
+  forward/backward slash;
+- The pattern "\*\*" matches zero or more complete directory
+  components.
 
-## Primary options
+## Options
+
+### Primary Options
 
 #### `<database>`
 
@@ -64,8 +66,8 @@ Ask the extractor to use this many threads. This option is passed to the
 extractor as a suggestion. If the CODEQL\_THREADS environment variable is
 set, the environment variable value takes precedence over this option.
 
-You can pass 0 to use one thread per core on the machine, or -*N* to
-leave *N* cores unused (except still use at least one thread).
+You can pass 0 to use one thread per core on the machine, or -_N_ to
+leave _N_ cores unused (except still use at least one thread).
 
 #### `-M, --ram=<MB>`
 
@@ -94,7 +96,7 @@ be any string that does not contain a newline.
 
 You can use this command-line option repeatedly to set multiple
 extractor options. If you provide multiple values for the same extractor
-option, the behavior depends on the type that the extractor option
+option, the behaviour depends on the type that the extractor option
 expects. String options will use the last value provided. Array options
 will use all the values provided, in order. Extractor options specified
 using this command-line option are processed after extractor options
@@ -120,7 +122,7 @@ string and array options are map entries with string and array values.
 
 Extractor option bundle files are read in the order they are specified.
 If different extractor option bundle files specify the same extractor
-option, the behavior depends on the type that the extractor option
+option, the behaviour depends on the type that the extractor option
 expects. String options will use the last value provided. Array options
 will use all the values provided, in order. Extractor options specified
 using this command-line option are processed before extractor options

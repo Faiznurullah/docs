@@ -1,6 +1,6 @@
 ---
 title: database trace-command
-versions:
+versions: # DO NOT MANUALLY EDIT. CHANGES WILL BE OVERWRITTEN BY A 🤖
   fpt: '*'
   ghae: '*'
   ghec: '*'
@@ -24,7 +24,7 @@ redirect_from:
 
 ## Synopsis
 
-```shell{:copy}
+```shell copy
 codeql database trace-command [--threads=<num>] [--ram=<MB>] [--extractor-option=<extractor-option-name=value>] <options>... -- <database> <command>...
 ```
 
@@ -36,7 +36,9 @@ This runs a single given command line under a tracer, thus possibly
 performing some extraction, but does not finalize the resulting CodeQL
 database.
 
-## Primary options
+## Options
+
+### Primary Options
 
 #### `<database>`
 
@@ -44,7 +46,7 @@ database.
 have been prepared for extraction with [codeql database init](/code-security/codeql-cli/codeql-cli-manual/database-init).
 
 If the `--db-cluster` option is given, this is not a database itself,
-but a directory that *contains* databases, and all of those databases
+but a directory that _contains_ databases, and all of those databases
 will be processed together.
 
 #### `<command>...`
@@ -65,8 +67,8 @@ Ask the extractor to use this many threads. This option is passed to the
 extractor as a suggestion. If the CODEQL\_THREADS environment variable is
 set, the environment variable value takes precedence over this option.
 
-You can pass 0 to use one thread per core on the machine, or -*N* to
-leave *N* cores unused (except still use at least one thread).
+You can pass 0 to use one thread per core on the machine, or -_N_ to
+leave _N_ cores unused (except still use at least one thread).
 
 #### `-M, --ram=<MB>`
 
@@ -77,7 +79,7 @@ set, the environment variable value takes precedence over this option.
 #### `--[no-]db-cluster`
 
 Indicates that the directory given on the command line is not a database
-itself, but a directory that *contains* one or more databases under
+itself, but a directory that _contains_ one or more databases under
 construction. Those databases will be processed together.
 
 #### `--no-tracing`
@@ -88,7 +90,7 @@ produce all necessary data directly.
 #### `--extra-tracing-config=<tracing-config.lua>`
 
 \[Advanced] The path to a tracer configuration file. It may be used to
-modify the behavior of the build tracer. It may be used to pick out
+modify the behaviour of the build tracer. It may be used to pick out
 compiler processes that run as part of the build command, and trigger
 the execution of other tools. The extractors will provide default tracer
 configuration files that should work in most situations.
@@ -129,7 +131,7 @@ be any string that does not contain a newline.
 
 You can use this command-line option repeatedly to set multiple
 extractor options. If you provide multiple values for the same extractor
-option, the behavior depends on the type that the extractor option
+option, the behaviour depends on the type that the extractor option
 expects. String options will use the last value provided. Array options
 will use all the values provided, in order. Extractor options specified
 using this command-line option are processed after extractor options
@@ -155,7 +157,7 @@ string and array options are map entries with string and array values.
 
 Extractor option bundle files are read in the order they are specified.
 If different extractor option bundle files specify the same extractor
-option, the behavior depends on the type that the extractor option
+option, the behaviour depends on the type that the extractor option
 expects. String options will use the last value provided. Array options
 will use all the values provided, in order. Extractor options specified
 using this command-line option are processed before extractor options

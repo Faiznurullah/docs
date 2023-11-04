@@ -1,4 +1,4 @@
-import { getDataByLanguage } from '../../lib/get-data.js'
+import { getDataByLanguage } from '#src/data-directory/lib/get-data.js'
 
 function getProductExampleData(product, key, language) {
   // Because getDataByLanguage() depends on reading data files from
@@ -25,12 +25,12 @@ export default async function productExamples(req, res, next) {
   req.context.productCommunityExamples = getProductExampleData(
     currentProduct,
     'community-examples',
-    currentLanguage
+    currentLanguage,
   )
   req.context.productUserExamples = getProductExampleData(
     currentProduct,
     'user-examples',
-    currentLanguage
+    currentLanguage,
   )
 
   return next()

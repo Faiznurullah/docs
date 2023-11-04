@@ -15,8 +15,9 @@ topics:
 children:
   - /about-authentication-to-github
   - /creating-a-strong-password
+  - /switching-between-accounts
   - /updating-your-github-access-credentials
-  - /creating-a-personal-access-token
+  - /managing-your-personal-access-tokens
   - /reviewing-your-ssh-keys
   - /reviewing-your-deploy-keys
   - /token-expiration-and-revocation
