@@ -49,7 +49,7 @@ ARC consists of a set of resources, some of which are created specifically for A
 Each resource that is deployed by ARC is given a name composed of:
 
 - an installation name, which is the installation name you specify when you install the Helm chart.
-- a resource identification suffix, which is is a string that identifies the resource type. This value is not configurable.
+- a resource identification suffix, which is a string that identifies the resource type. This value is not configurable.
 
 {% note %}
 
@@ -108,7 +108,7 @@ You can find the definition of ARC's runner image in [this Dockerfile](https://g
 You can create your own runner image that meets your requirements. Your runner image must fulfill the following conditions.
 
 - Use a base image that can run the self-hosted runner application. For more information, see "[AUTOTITLE](/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners)."
-- The [runner binary](https://github.com/actions/runner/releases) must be placed placed under `/home/runner/` and launched using `/home/runner/run.sh`.
+- The [runner binary](https://github.com/actions/runner/releases) must be placed under `/home/runner/` and launched using `/home/runner/run.sh`.
 - If you use Kubernetes mode, the [runner container hooks](https://github.com/actions/runner-container-hooks/releases) must be placed under `/home/runner/k8s`.
 
 You can use the following example Dockerfile to start creating your own runner image.

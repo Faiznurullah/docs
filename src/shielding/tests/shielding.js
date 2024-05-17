@@ -1,6 +1,7 @@
-import { SURROGATE_ENUMS } from '../../../middleware/set-fastly-surrogate-key.js'
-// import { setFastlySurrogateKey } from '../../../middleware/set-fastly-surrogate-key.js'
-import { get } from '../../../tests/helpers/e2etest.js'
+import { describe, expect, test } from 'vitest'
+
+import { SURROGATE_ENUMS } from '#src/frame/middleware/set-fastly-surrogate-key.js'
+import { get } from '#src/tests/helpers/e2etest.js'
 
 describe('honeypotting', () => {
   test('any GET with survey-vote and survey-token query strings is 400', async () => {
@@ -36,10 +37,59 @@ describe('junk paths', () => {
     },
   )
 
+  test('just _next', async () => {
+    const res = await get('/_next')
+    expect(res.statusCode).toBe(404)
+  })
+
+  test('with a starting /en/ but with a junk end', async () => {
+    const res = await get('/en/package-lock.json')
+    expect(res.statusCode).toBe(404)
+    expect(res.headers['content-type']).toMatch('text/plain')
+  })
+})
+
+describe('index.md and .md suffixes', () => {
   test('any URL that ends with /index.md redirects', async () => {
-    const res = await get('/en/get-started/index.md')
-    expect(res.statusCode).toBe(302)
-    expect(res.headers.location).toBe('/en/get-started')
+    // With language prefix
+    {
+      const res = await get('/en/get-started/index.md')
+      expect(res.statusCode).toBe(302)
+      expect(res.headers.location).toBe('/en/get-started')
+    }
+    // Without language prefix
+    {
+      const res = await get('/get-started/index.md')
+      expect(res.statusCode).toBe(302)
+      expect(res.headers.location).toBe('/get-started')
+    }
+    // With query string
+    {
+      const res = await get('/get-started/index.md?foo=bar')
+      expect(res.statusCode).toBe(302)
+      expect(res.headers.location).toBe('/get-started?foo=bar')
+    }
+  })
+
+  test('any URL that ends with /.md redirects', async () => {
+    // With language prefix
+    {
+      const res = await get('/en/get-started/hello.md')
+      expect(res.statusCode).toBe(302)
+      expect(res.headers.location).toBe('/en/get-started/hello')
+    }
+    // Without language prefix
+    {
+      const res = await get('/get-started/hello.md')
+      expect(res.statusCode).toBe(302)
+      expect(res.headers.location).toBe('/get-started/hello')
+    }
+    // With query string
+    {
+      const res = await get('/get-started/hello.md?foo=bar')
+      expect(res.statusCode).toBe(302)
+      expect(res.headers.location).toBe('/get-started/hello?foo=bar')
+    }
   })
 })
 
@@ -64,7 +114,7 @@ describe('rate limiting', () => {
       const newRemaining = parseInt(res.headers['ratelimit-remaining'])
       expect(newLimit).toBe(limit)
       // Can't rely on `newRemaining == remaining - 1` because of
-      // concurrency of jest-running.
+      // concurrency of test-running.
       expect(newRemaining).toBeLessThan(remaining)
     }
   })
@@ -78,18 +128,28 @@ describe('rate limiting', () => {
 })
 
 describe('404 pages and their content-type', () => {
-  const exampleNonLanguage404s = [
-    '/_next/image/foo',
-    '/wp-content/themes/seotheme/db.php?u',
-    '/enterprise/3.1/_next/static/chunks/616-910d0397bafa52e0.js',
-    '/~root',
-  ]
-  test.each(exampleNonLanguage404s)(
+  const exampleNonLanguage404plain = ['/_next/image/foo']
+  test.each(exampleNonLanguage404plain)(
     'non-language 404 response is plain text and cacheable: %s',
     async (pathname) => {
       const res = await get(pathname)
       expect(res.statusCode).toBe(404)
       expect(res.headers['content-type']).toMatch('text/plain')
+      expect(res.headers['cache-control']).toMatch('public')
+    },
+  )
+
+  const exampleNonLanguage404s = [
+    '/wp-content/themes/seotheme/db.php?u',
+    '/enterprise/3.1/_next/static/chunks/616-910d0397bafa52e0.js',
+    '/~root',
+  ]
+  test.each(exampleNonLanguage404s)(
+    'non-language 404 response is html text and cacheable: %s',
+    async (pathname) => {
+      const res = await get(pathname)
+      expect(res.statusCode).toBe(404)
+      expect(res.headers['content-type']).toMatch('text/html; charset=utf-8')
       expect(res.headers['cache-control']).toMatch('public')
     },
   )

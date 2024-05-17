@@ -44,13 +44,13 @@ The [`src/bookmarklets`](../src/bookmarklets) directory contains some browser sh
 
 By default the local server won't run with all supported languages enabled.  If you need to run the server with a particular language, you can temporarily edit the `start` script in `package.json` and update the `ENABLED_LANGUAGES` variable.  For example, to enable Japanese and Portuguese, you can set it to `ENABLED_LANGUAGES='en,ja,pt'` and then you need to restart the server for the change to take effect.
 
-The supported language codes are defined in [lib/languages.js](#src/languages/lib/languages.js).
+The supported language codes are defined in [lib/languages.js](../src/languages/lib/languages.js).
 
 ## Site structure
 
 This site was originally a Ruby on Rails web application. Some time later it was converted into a static site powered by [Jekyll](https://jekyllrb.com/). A few years after that it was migrated to [Nanoc](https://nanoc.app/), another Ruby static site generator.
 
-Today it's a dynamic Node.js webserver powered by Express, using [middleware](../middleware/README.md) to support proper HTTP redirects, language header detection, and dynamic content generation to support the various flavors of GitHub's product documentation, like GitHub.com and GitHub Enterprise Server.
+Today it's a dynamic Node.js webserver powered by Express, using middleware to support proper HTTP redirects, language header detection, and dynamic content generation to support the various flavors of GitHub's product documentation, like GitHub.com and GitHub Enterprise Server.
 
 The tooling for this site has changed over the years, but many of the tried-and-true authoring conventions of the original Jekyll site have been preserved:
 
@@ -69,6 +69,5 @@ For more info about working with this site, check out these READMEs:
 - [data/README.md](../data/README.md)
 - [data/reusables/README.md](../data/reusables/README.md)
 - [data/variables/README.md](../data/variables/README.md)
-- [src/content-render/README.md](src/content-render/README.md)
-- [includes/README.md](../includes/README.md)
-- [src/README.md](src/README.md)
+- [src/content-render/README.md](../src/content-render/README.md)
+- [src/README.md](../src/README.md)

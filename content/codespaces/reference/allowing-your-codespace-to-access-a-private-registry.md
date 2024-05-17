@@ -62,11 +62,17 @@ You can define secrets to allow {% data variables.product.prodname_github_codesp
 - `<*>_CONTAINER_REGISTRY_USER`
 - `<*>_CONTAINER_REGISTRY_PASSWORD`
 
-You can store secrets at the user, repository, or organization-level, allowing you to share them securely between different codespaces. When you create a set of secrets for a private image registry, you need to replace the "<*>" in the name with a consistent identifier. For more information, see "[AUTOTITLE](/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces)" and "[AUTOTITLE](/codespaces/managing-codespaces-for-your-organization/managing-secrets-for-your-repository-and-organization-for-github-codespaces)."
+You can store secrets at the user, repository, or organization-level, allowing you to share them securely between different codespaces. When you create a set of secrets for a private image registry, you need to replace the "<*>" in the name with a consistent identifier. For more information, see "[AUTOTITLE](/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces)" and "[AUTOTITLE](/codespaces/managing-codespaces-for-your-organization/managing-development-environment-secrets-for-your-repository-or-organization)."
 
 If you are setting the secrets at the user or organization level, make sure to assign those secrets to the repository you'll be creating the codespace in by choosing an access policy from the dropdown list.
 
 <img src="/assets/images/help/codespaces/secret-repository-access.png" alt='Screenshot of the "Repository access" dropdown menu with the options "All repositories," "Private repositories," and "Selected repositories."' style="width:400px;"/>
+
+### Pulling a Docker image into your codespace
+
+{% data variables.product.prodname_github_codespaces %} uses Docker, so to pull a private Docker image inside your codespace at runtime, you need to be able to use Docker-in-Docker. To make this possible, the secrets required for login to Docker are automatically added to the `~/.docker/config.json` file within your codespace. This happens after the `onCreateCommand` lifecycle hook but before `postCreateCommand`, `postStartCommand`, and `postAttachCommand`. As a result, `postCreateCommand` will be able to use Docker-in-Docker to pull a Docker image into the codespace, but `onCreateCommand` will not. For this reason, Docker-in-Docker is not available during prebuild creation.
+
+After the codespace is running you will be able to open a terminal in the codespace and run the command `docker pull PRIVATE-IMAGE-URL`.
 
 ### Example secrets
 

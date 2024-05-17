@@ -45,6 +45,8 @@ In addition to licensed seats, your bill may include other charges, such as {% d
 
 ## People that consume a license
 
+{% data reusables.enterprise-managed.repo-collaborators-note %}
+
 {% ifversion fpt %}
 
 {% data variables.product.company_short %} bills for the following people:
@@ -79,7 +81,7 @@ In addition to licensed seats, your bill may include other charges, such as {% d
 - Enterprise owners who are a member or owner of at least one organization in the enterprise
 - Organization members, including owners
 - Outside collaborators on private or internal repositories owned by your organization, excluding forks
-- Dormant users
+- Dormant users who are a member or owner of at least one organization in the enterprise
 
 If your enterprise does not use {% data variables.product.prodname_emus %}, you will also be billed for each of the following accounts:
 
@@ -97,20 +99,22 @@ If your enterprise does not use {% data variables.product.prodname_emus %}, you 
 {% data variables.product.company_short %} does not bill for any of the following accounts:
 
 - {% data variables.enterprise.prodname_managed_users_caps %} that are suspended
-- Enterprise owners who are not a member or owner of at least one organization in the enterprise
+- Enterprise owners who are not a member or owner of at least one organization in the enterprise, except for the user who set up the enterprise
 - Enterprise billing managers
 - Billing managers for individual organizations
 - Anyone with a pending invitation to become a billing manager
 - Anyone with a pending invitation to become an outside collaborator on a public repository owned by your organization
+- Guest collaborators who are not organization members (see "[AUTOTITLE](/enterprise-cloud@latest/admin/user-management/managing-users-in-your-enterprise/roles-in-an-enterprise#guest-collaborators)")
 - Users of {% data variables.visual_studio.prodname_vss_ghe %} whose accounts on {% data variables.product.prodname_dotcom_the_website %} are not linked, and who do not meet any of the other criteria for per-user pricing
+- Users who have been provisioned with a {% data variables.enterprise.prodname_managed_user %}, but are not members of any organizations in the enterprise
 
 ### Accounts that consume a license on {% data variables.product.prodname_ghe_server %}
 
-Each user account on {% data variables.product.prodname_ghe_server %} consumes a seat.
+After a user successfully authenticates to a {% data variables.product.prodname_ghe_server %} instance for the first time, the user consumes a seat.
 
 Suspended users are not counted when calculating the number of licensed users consuming seats. For more information, see "[Suspending and unsuspending users]({% ifversion not ghes %}/enterprise-server@latest{% endif %}/admin/user-management/managing-users-in-your-enterprise/suspending-and-unsuspending-users){% ifversion not ghes %}" in the {% data variables.product.prodname_ghe_server %} documentation.{% else %}."{% endif %}
 
-Dormant users do occupy a seat license. As such, you can choose to suspend dormant users to release user licenses. For more information, see "[Managing dormant users]({% ifversion not ghes %}/enterprise-server@latest{% endif %}/admin/user-management/managing-users-in-your-enterprise/managing-dormant-users){% ifversion not ghes %}" in the {% data variables.product.prodname_ghe_server %} documentation.{% else %}."{% endif %}
+Dormant users do occupy a seat license. Administrators can suspend dormant users to free licenses. For more information, see "[Managing dormant users]({% ifversion not ghes %}/enterprise-server@latest{% endif %}/admin/user-management/managing-users-in-your-enterprise/managing-dormant-users){% ifversion not ghes %}" in the {% data variables.product.prodname_ghe_server %} documentation.{% else %}."{% endif %}
 
 {% endif %}
 

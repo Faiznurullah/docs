@@ -47,7 +47,7 @@ Organization owners can also verify additional domains for their organizations. 
 
 After you approve domains for your enterprise account, you can restrict email notifications for activity within your enterprise account to users with verified email addresses within verified or approved domains. For more information, see "[AUTOTITLE](/admin/policies/enforcing-policies-for-your-enterprise/restricting-email-notifications-for-your-enterprise)."
 
-{% ifversion ghec %}To receive email notifications, the owner of the user account must verify the email address on {% data variables.product.product_name %}. For more information, see "[AUTOTITLE](/get-started/signing-up-for-github/verifying-your-email-address)."{% endif %}
+{% ifversion ghec %}To receive email notifications, the owner of the user account must verify the email address on {% data variables.product.product_name %}. For more information, see "[AUTOTITLE](/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/verifying-your-email-address)."{% endif %}
 
 Organization owners cannot see the email address or which user account is associated with an email address from an approved domain.
 
@@ -57,17 +57,25 @@ Organization owners can also approve additional domains for their organizations.
 
 To verify your enterprise account's domain, you must have access to modify domain records with your domain hosting service.
 
+For successful domain verification, make sure that the TXT record needed for the verification can be checked directly from your domain's main name servers. You can verify this by running the command: `dig DOMAIN +nostats +nocomments +nocmd TXT @AUTHORITATIVE-NAMESERVER`. This helps avoid problems from CNAME records that might point somewhere else.
+
 {% data reusables.enterprise-accounts.access-enterprise %}
 {% data reusables.enterprise-accounts.settings-tab %}
 {% data reusables.enterprise-accounts.verified-domains-tab %}
 {% data reusables.enterprise-accounts.add-a-domain %}
 {% data reusables.organizations.add-domain %}
 {% data reusables.organizations.add-dns-txt-record %}
-1. Wait for your DNS configuration to change, which may take up to 72 hours. You can confirm your DNS configuration has changed by running the `dig` command on the command line, replacing `ENTERPRISE-ACCOUNT` with the name of your enterprise account, and `example.com` with the domain you'd like to verify. You should see your new TXT record listed in the command output.
+1. Wait for your DNS configuration to change, which may take up to 72 hours. You can confirm your DNS configuration has changed by running the `dig` command on the command line, replacing `TXT-RECORD-NAME` with the name of the TXT record created in your DNS configuration. You should see your new TXT record listed in the command output.
 
    ```shell
-   dig _github-challenge-ENTERPRISE-ACCOUNT.DOMAIN-NAME +nostats +nocomments +nocmd TXT
+   dig TXT-RECORD-NAME +nostats +nocomments +nocmd TXT
    ```
+
+1. To make sure that the TXT record can be checked directly from your domain's main name servers, run the following command.
+
+    ```shell
+    dig DOMAIN +nostats +nocomments +nocmd TXT @AUTHORITATIVE-NAMESERVER
+    ```
 
 1. After confirming your TXT record is added to your DNS, follow steps one through four above to navigate to your enterprise account's approved and verified domains.
 {% data reusables.enterprise-accounts.continue-verifying-domain %}

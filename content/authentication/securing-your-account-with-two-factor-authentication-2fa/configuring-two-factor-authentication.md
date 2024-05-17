@@ -58,7 +58,7 @@ A time-based one-time password (TOTP) application automatically generates an aut
 
 {% tip %}
 
-**Tip**: To configure authentication via TOTP on multiple devices, during setup, scan the QR code using each device at the same time or save the {% ifversion fpt or ghec or ghes > 3.8 %}"setup key"{% else %}"text code"{% endif %}, which is the TOTP secret. If 2FA is already enabled and you want to add another device, you must re-configure your TOTP app from your security settings.
+**Tip**: To configure authentication via TOTP on multiple devices, during setup, scan the QR code using each device at the same time or save the "setup key", which is the TOTP secret. If 2FA is already enabled and you want to add another device, you must re-configure your TOTP app from your security settings.
 
 {% endtip %}
 
@@ -66,33 +66,13 @@ A time-based one-time password (TOTP) application automatically generates an aut
 {% data reusables.user-settings.access_settings %}
 {% data reusables.user-settings.security %}
 {% data reusables.two_fa.enable-two-factor-authentication %}
-{%- ifversion fpt or ghec or ghes > 3.8 %}
-1. Under "Setup authenticator app", do one of the following:
-    - Scan the QR code with your mobile device's app. After scanning, the app displays a six-digit code that you can enter on {% data variables.product.product_name %}.
-    - If you can't scan the QR code, click **setup key** to see a code, the TOTP secret, that you can manually enter in your TOTP app instead.
-
-   ![Screenshot of the "Setup authenticator app" section of the 2FA settings. A link, labeled "setup key", is highlighted in orange.](/assets/images/help/2fa/ghes-3.8-and-higher-2fa-wizard-app-click-code.png)
-1. The TOTP application saves your account on {% data variables.location.product_location %} and generates a new authentication code every few seconds. On {% data variables.product.product_name %}, type the code into the field under "Verify the code from the app".
-{%- else %}
-1. Under "Two-factor authentication", select **Set up using an app** and click **Continue**.
-1. Under "Authentication verification", do one of the following:
-    - Scan the QR code with your mobile device's app. After scanning, the app displays a six-digit code that you can enter on {% data variables.product.product_name %}.
-    - If you can't scan the QR code, click **enter this text code** to see a code that you can manually enter in your TOTP app instead.
-    ![Screenshot of the 2FA enablement page. A link with the text "enter this text code" is highlighted in orange.](/assets/images/help/2fa/2fa-wizard-app-click-code.png)
-1. The TOTP application saves your account on {% data variables.location.product_location %} and generates a new authentication code every few seconds. On {% data variables.product.product_name %}, type the code into the field under "Enter the six-digit code from the application".
-{%- endif %}
+{% data reusables.two_fa.enable-totp-app-method %}
 {% data reusables.two_fa.save_your_recovery_codes_during_2fa_setup %}
 {% data reusables.two_fa.backup_options_during_2fa_enrollment %}
-{% ifversion ghes < 3.9 %}{% data reusables.two_fa.test_2fa_immediately %}{% endif %}
 
-If you wish to setup a TOTP app manually, and require the parameters encoded in the QR code, they are:
-- Type: `TOTP`
-- Label: `GitHub:<username>` where `<username>` is your handle on GitHub, for example `monalisa`
-- Secret: This is the encoded setup key, shown if you click {%- ifversion fpt or ghec or ghes > 3.8 %}"setup key"{%- else %}"enter this text code"{%- endif %} during configuration
-- Issuer: `GitHub`
-- Algorithm: The default of SHA1 is used
-- Digits: The default of 6 is used
-- Period: The default of 30 (seconds) is used
+### Manually configuring a TOTP app
+
+{% data reusables.two_fa.manual-totp-app-setup %}
 
 {% ifversion fpt or ghec %}
 
@@ -100,22 +80,12 @@ If you wish to setup a TOTP app manually, and require the parameters encoded in 
 
 If you're unable to configure a TOTP app, you can also register your phone number to receive SMS messages.
 
-Before using this method, be sure that you can receive text messages. Carrier rates may apply.
-
-{% warning %}
-
-**Warning:** We **strongly recommend** using a TOTP application for two-factor authentication instead of SMS, and security keys as backup methods instead of SMS. {% data variables.product.product_name %} doesn't support sending SMS messages to phones in every country. Before configuring authentication via text message, review the list of countries where {% data variables.product.product_name %} supports authentication via SMS. For more information, see "[AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/countries-where-sms-authentication-is-supported)".
-
-{% endwarning %}
+{% data reusables.two_fa.sms-warning %}
 
 {% data reusables.user-settings.access_settings %}
 {% data reusables.user-settings.security %}
 {% data reusables.two_fa.enable-two-factor-authentication %}
-1. At the bottom of the page, next to "SMS authentication", click **Select**.
-1. Complete the CAPTCHA challenge, which helps protect against spam and abuse.
-1. Under "Setup SMS authentication", select your country code and type your mobile phone number, including the area code. When your information is correct, click **Send authentication code**.
-1. You'll receive a text message with a security code. On {% data variables.product.product_name %}, type the code into the field under "Verify the code sent to your phone" and click **Continue**.
-   - If you need to edit the phone number you entered, you'll need to complete another CAPTCHA challenge.
+{% data reusables.two_fa.enable-sms-number-method %}
 {% data reusables.two_fa.save_your_recovery_codes_during_2fa_setup %}
 {% data reusables.two_fa.backup_options_during_2fa_enrollment %}
 
@@ -125,7 +95,15 @@ Before using this method, be sure that you can receive text messages. Carrier ra
 
 ## Configuring two-factor authentication using a passkey
 
-{% data reusables.passkeys.about-passkeys %} For more information, see "[AUTOTITLE](/authentication/authenticating-with-a-passkey/about-passkeys)."
+{% data reusables.passkeys.about-passkeys %}
+
+{% note %}
+
+**Note:** Platform authenticators like Windows Hello, Face ID, or Touch ID can be registered as a passkey instead.
+
+{% endnote %}
+
+For more information, see "[AUTOTITLE](/authentication/authenticating-with-a-passkey/about-passkeys)."
 
 1. You must have already configured 2FA via a TOTP mobile app{% ifversion fpt or ghec %} or via SMS{% endif %}.
 {% data reusables.passkeys.adding-a-passkey %}
@@ -136,7 +114,7 @@ Before using this method, be sure that you can receive text messages. Carrier ra
 
 {% ifversion passkeys %}
 
-Not all FIDO authenticators can be used as passkeys, but you can still register those authenticators as security keys. Security keys are also webauthn credentials, but unlike passkeys they don't need to require user validation. Since security keys only need to verify user presence, they only count as a second factor and must be used in conjunction with your password.
+Not all FIDO authenticators can be used as passkeys, but you can still register those authenticators as security keys. Security keys are also WebAuthn credentials, but unlike passkeys they don't require user validation. Since security keys only need to verify user presence, they only count as a second factor and must be used in conjunction with your password.
 
 {% else %}
 
@@ -147,7 +125,7 @@ On most devices and browsers, you can use a physical security key over USB or NF
 Registering a security key for your account is available after enabling 2FA with a TOTP application{% ifversion fpt or ghec %} or a text message{% endif %}. If you lose your security key, you'll still be able to use your phone's code to sign in.
 
 1. You must have already configured 2FA via a TOTP mobile app{% ifversion fpt or ghec %} or via SMS{% endif %}.
-1. Ensure that you have a WebAuthn compatible security key inserted into your device, or that your device has a built-in authenticator such as Windows Hello, Face ID, or Touch ID. Most computers, phones, and tablets support this as an easier-to-use alternative to physical security keys.
+1. Ensure that you have a WebAuthn compatible security key inserted into your device.
 {% data reusables.user-settings.access_settings %}
 {% data reusables.user-settings.security %}
 1. Next to "Security keys", click **Add**.
@@ -156,9 +134,8 @@ Registering a security key for your account is available after enabling 2FA with
 
 1. Under "Security keys", click **Register new security key**.
 1. Type a nickname for the security key, then click **Add**.
-1. Following your security key's documentation, activate your security key. If using an authenticator that's built into your device, follow the activation instructions from your operating system. You may need to select options such as `Face`, `PIN`, or `built-in sensor` to access your device's authenticator, depending on your operating system and browser.
+1. Following your security key's documentation, activate your security key.
 1. Confirm that you've downloaded and can access your recovery codes. If you haven't already, or if you'd like to generate another set of codes, download your codes and save them in a safe place. For more information, see "[AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods#downloading-your-two-factor-authentication-recovery-codes)."
-{% ifversion ghes < 3.9 %}{% data reusables.two_fa.test_2fa_immediately %}{% endif %}
 
 {% ifversion fpt or ghec %}
 

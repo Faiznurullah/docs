@@ -7,7 +7,7 @@ import { program } from 'commander'
 import fpt from '#src/versions/lib/non-enterprise-default-version.js'
 import { allVersionKeys } from '#src/versions/lib/all-versions.js'
 import { liquid } from '#src/content-render/index.js'
-import contextualize from '../../middleware/context.js'
+import contextualize from '#src/frame/middleware/context/context.js'
 
 const layoutFilename = path.posix.join(process.cwd(), 'src/dev-toc/layout.html')
 const layout = fs.readFileSync(layoutFilename, 'utf8')
@@ -39,7 +39,7 @@ async function main() {
   async function recurse(tree) {
     const { page } = tree
     tree.renderedFullTitle = page.rawTitle.includes('{')
-      ? await await liquid.parseAndRender(page.rawTitle, req.context)
+      ? await liquid.parseAndRender(page.rawTitle, req.context)
       : page.rawTitle
     for (const node of tree.childPages || []) {
       await recurse(node)

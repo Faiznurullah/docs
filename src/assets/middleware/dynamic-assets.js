@@ -2,11 +2,11 @@ import fs from 'fs/promises'
 
 import sharp from 'sharp'
 
-import { assetCacheControl, defaultCacheControl } from '../../../middleware/cache-control.js'
+import { assetCacheControl, defaultCacheControl } from '#src/frame/middleware/cache-control.js'
 import {
   setFastlySurrogateKey,
   SURROGATE_ENUMS,
-} from '../../../middleware/set-fastly-surrogate-key.js'
+} from '#src/frame/middleware/set-fastly-surrogate-key.js'
 
 /**
  * This is the indicator that is a virtual part of the URL.
@@ -132,7 +132,7 @@ export default async function dynamicAssets(req, res, next) {
       // Also given that rendering-for-viewing is the "end of the line"
       // for the image meaning it just ends up being viewed and not
       // resaved as a source file. If we had intention to overwrite all
-      // original PNG source files to WEBP, we should consier lossless
+      // original PNG source files to WEBP, we should consider lossless
       // to preserve as much quality as possible at the source level.
       // The default quality is 80% which, combined with `lossless:false`
       // makes our images 2.8x smaller than the average PNG.

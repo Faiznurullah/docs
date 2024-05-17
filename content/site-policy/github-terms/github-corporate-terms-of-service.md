@@ -75,8 +75,6 @@ This Agreement applies to the following GitHub offerings, as further defined bel
 
 **"Professional Services"** means training, consulting, or implementation services that GitHub provides to Customer pursuant to a mutually executed SOW. Professional Services do not include Support.
 
-**"Professional Services Credits"** means the upfront payment method for purchasing Professional Services (exclusive of travel and lodging expenses) that Customer may use over a period of twelve (12) months (unless otherwise stated in an Order Form) for Professional Services. Any Professional Services Credits that remain unused at the end of twelve (12) months from the date of purchase (or as otherwise stated in an Order Form) are automatically canceled and are non-refundable.
-
 **“Public Repository”** means a repository whose Content is visible to All Users.
 
 **"Representatives"** means a Party’s employees, officers, agents, independent contractors, consultants, and legal and financial advisors.
@@ -195,7 +193,7 @@ GitHub will provide notice regarding our access to private repository content, u
 
 ### 1. GitHub's Rights to Content
 
-The look and feel of the Service is copyright © GitHub, Inc. All rights reserved. Customer may not duplicate, copy, or reuse any portion of the HTML/CSS, Javascript, or visual design elements or concepts without express written permission from GitHub.
+The look and feel of the Service is copyright © GitHub, Inc. All rights reserved. Customer may not duplicate, copy, or reuse any portion of the HTML/CSS, JavaScript, or visual design elements or concepts without express written permission from GitHub.
 
 ### 2. GitHub Trademarks and Logos
 
@@ -237,11 +235,7 @@ Customer’s Affiliates are authorized to use the Products in accordance with th
 
 Customer may obtain additional Subscription Licenses under this Agreement by submitting a request through the Service or via its sales team. If Customer purchases the additional Subscription Licenses, Customer must pay the then-currently applicable Fees for them, prorated for the balance of the applicable Subscription Term. Upon renewal of Customer’s Subscription Licenses for another Subscription Term, GitHub will invoice all Subscription Licenses at once on an annual basis unless otherwise specified in an Order Form.
 
-### 3. Professional Services Credits.
-
-If Customer uses Professional Services Credits to pay for Professional Services, then upon Customer’s receipt of an SOW, the applicable Professional Services Credits will be deducted from Customer’s Professional Services Credits balance. Customer is responsible for ensuring that its purchase order issued to GitHub for the Professional Services reflects the pricing set forth in the SOW. If there is any difference in pricing listed in the SOW and the pricing listed in Customer’s purchase order, the pricing in the SOW will control. The Parties agree that SOWs payable via Professional Services Credits do not have to be signed by either Party to be valid and enforceable. All Professional Services Credits must be used within the time set forth in the Order Form or will automatically be canceled and are non-refundable. Customer may not apply Professional Services Credits to travel and lodging expenses, which must be invoiced separately.
-
-### 4. Authorization
+### 3. Authorization
 
 Customer authorizes GitHub to charge the on-file credit card, PayPal account, or other approved methods of payment for Fees.
 
@@ -331,7 +325,7 @@ Upon Customer’s request for Professional Services, GitHub will provide an SOW 
 
 GitHub reserves the right, at its sole discretion, to amend this Agreement at any time and will update this Agreement in the event of any such amendments. GitHub will notify Customer of material changes to this Agreement, such as price increases, at least 30 days prior to the change taking effect by posting a notice on the Service or sending email to the primary email address specified in your GitHub account. Customer's continued use of the Service after those 30 days constitutes agreement to those revisions of this Agreement. For any other modifications, Customer's continued use of the Service constitutes agreement to our revisions of this Agreement. Customer can view all changes to this Agreement in our [Site Policy](https://github.com/github/site-policy) repository.
 
-GitHub changes the Service via Updates and addition of new features. Nothwithstanding the foregoing, GitHub reserves the right at any time to modify or discontinue, temporarily or permanently, the Service (or any part of it) with or without notice.
+GitHub changes the Service via Updates and addition of new features. Notwithstanding the foregoing, GitHub reserves the right at any time to modify or discontinue, temporarily or permanently, the Service (or any part of it) with or without notice.
 
 ## S. Support
 

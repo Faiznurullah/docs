@@ -3,7 +3,7 @@ import path from 'path'
 import fs from 'fs/promises'
 
 import cheerio from 'cheerio'
-import { expect, test } from '@jest/globals'
+import { describe, expect, test } from 'vitest'
 
 import parsePageSectionsIntoRecords from '../scripts/parse-page-sections-into-records'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -41,7 +41,7 @@ describe('search parsePageSectionsIntoRecords module', () => {
       objectID: '/example/href',
       breadcrumbs: 'GitHub Actions / actions learning path',
       title: 'I am the page title',
-      headings: 'First heading Second heading Table heading',
+      headings: 'First heading\nSecond heading\nTable heading',
       content:
         'This is an introduction to the article.\n' +
         "In this article\nThis won't be ignored.\nFirst heading\n" +

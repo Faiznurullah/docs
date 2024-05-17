@@ -1,12 +1,11 @@
 import { GetServerSideProps } from 'next'
-import React from 'react'
 
 import {
   MainContextT,
   MainContext,
   getMainContext,
   addUINamespaces,
-} from 'components/context/MainContext'
+} from 'src/frame/components/context/MainContext'
 import { AutomatedPage } from 'src/automated-pipelines/components/AutomatedPage'
 import {
   AutomatedPageContext,

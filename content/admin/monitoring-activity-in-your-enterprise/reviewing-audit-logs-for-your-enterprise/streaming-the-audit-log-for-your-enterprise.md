@@ -17,20 +17,16 @@ redirect_from:
 permissions: Enterprise owners can configure audit log streaming.
 ---
 
-{% ifversion ghes %}
+
 {% note %}
 
-**Note:** Audit log streaming is currently in beta for {% data variables.product.product_name %} and is subject to change.
+**Note:** {% ifversion ghes %}{% data reusables.webhooks.webhooks-as-audit-log-alternative %}{% else %}{% data reusables.webhooks.webhooks-as-audit-log-alternative %}{% endif %}
 
 {% endnote %}
-{% endif %}
 
 ## About audit log streaming
 
-To help protect your intellectual property and maintain compliance for your organization, you can use streaming to keep copies of your audit log data and monitor:
-{% data reusables.audit_log.audited-data-list %}
-
-The benefits of streaming audit data include:
+To help protect your intellectual property and maintain compliance for your company, you can use streaming to keep copies of your audit log data. The audit log details events such as changes to settings and access, user membership, app permissions, and more. If you stream audit log data, you can take advantage of the following benefits.
 
 - **Data exploration**. You can examine streamed events using your preferred tool for querying large quantities of data. The stream contains both audit events and Git events across the entire enterprise account.{% ifversion pause-audit-log-stream %}
 - **Data continuity**. You can pause the stream for up to seven days without losing any audit data.{% endif %}
@@ -52,6 +48,24 @@ Enabling audit log streaming can cause a minor impact on the performance of {% d
 
 {% endif %}
 
+{% ifversion audit-log-streaming-health-check %}
+
+## Health checks for audit log streams
+
+Every 24 hours, a health check runs for each stream. If a stream is set up incorrectly, an email will be sent to the enterprise owners. To avoid audit log events being dropped from the stream, a misconfigured stream must be fixed within six days.
+
+To fix your streaming configuration, follow the steps outlined in "[Setting up audit log streaming](#setting-up-audit-log-streaming)."
+
+{% endif %}
+
+## Events that appear in audit log streams
+
+You can review the specific events that appear in streamed audit logs. For more information, see the following articles.
+
+- "[AUTOTITLE](/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/audit-log-events-for-your-enterprise)"
+- "[AUTOTITLE](/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/audit-log-events-for-your-organization)"
+- "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/security-log-events)"
+
 ## Setting up audit log streaming
 
 You set up the audit log stream on {% data variables.product.product_name %} by following the instructions for your provider.
@@ -64,6 +78,14 @@ You set up the audit log stream on {% data variables.product.product_name %} by 
 - [Splunk](#setting-up-streaming-to-splunk)
 
 ### Setting up streaming to Amazon S3
+
+{% ifversion ghes %}
+{% note %}
+
+**Note**: The Amazon region `us-east-1` must be reachable from your appliance in order for streaming to S3 to work accordingly.
+
+{% endnote %}
+{% endif %}
 
 {% ifversion streaming-oidc-s3 %}
 You can set up streaming to S3 with access keys or, to avoid storing long-lived secrets in {% data variables.product.product_name %}, with OpenID Connect (OIDC).
@@ -240,8 +262,14 @@ To set up streaming to Google Cloud Storage, you must create a service account i
 
 To stream audit logs to Splunk's HTTP Event Collector (HEC) endpoint you must make sure that the endpoint is configured to accept HTTPS connections. For more information, see [Set up and use HTTP Event Collector in Splunk Web](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector) in the Splunk documentation.
 
+{% note %}
+
+**Note**: {% data variables.product.prodname_dotcom %} validates the HEC endpoint via `<Domain>:port/services/collector`. If self-hosting the HEC endpoint (such as with [Splunk HEC Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/splunkhecreceiver) via OpenTelemetry), ensure the endpoint is reachable at this destination.
+
+{% endnote %}
+
 {% ifversion ghec %}
-To get a list of IP address ranges that {% data variables.product.prodname_dotcom %} uses for connections to the HEC endpoint, you can use the REST API. The `meta` endpoint for {% data variables.product.product_name %} includes a `hooks` key with a list of the IP addresses. For more information, see "[Meta](/rest/meta/meta#get-github-enterprise-cloud-meta-information)" in the REST API documentation.
+To get a list of IP address ranges that {% data variables.product.prodname_dotcom %} uses for connections to the HEC endpoint, you can use the REST API. The `meta` endpoint for {% data variables.product.product_name %} includes a `hooks` key with a list of the IP addresses. For more information, see "[AUTOTITLE](/rest/meta/meta#get-github-enterprise-cloud-meta-information)."
 {% endif %}
 
 {% data reusables.enterprise.navigate-to-log-streaming-tab %}
@@ -256,7 +284,7 @@ To get a list of IP address ranges that {% data variables.product.prodname_dotco
 
    - The port on which the application accepts data.<br>
 
-     If you're using Splunk Cloud and haven't changed the port configration, `Port` should be `443`.
+     If you're using Splunk Cloud and haven't changed the port configuration, `Port` should be `443`.
 
      If you're using the free trial version of Splunk Cloud, `Port` should be `8088`.
 

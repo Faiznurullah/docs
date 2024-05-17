@@ -1,12 +1,13 @@
-import { jest } from '@jest/globals'
+import { describe, expect, test, vi } from 'vitest'
+
 import sharp from 'sharp'
 import { fileTypeFromBuffer } from 'file-type'
 
-import { SURROGATE_ENUMS } from '../../../middleware/set-fastly-surrogate-key.js'
-import { get, head } from '../../../tests/helpers/e2etest.js'
+import { SURROGATE_ENUMS } from '#src/frame/middleware/set-fastly-surrogate-key.js'
+import { get, head } from '#src/tests/helpers/e2etest.js'
 
 describe('dynamic assets', () => {
-  jest.setTimeout(3 * 60 * 1000)
+  vi.setConfig({ testTimeout: 3 * 60 * 1000 })
 
   test('GET PNG as a WebP', async () => {
     const res = await get('/assets/images/_fixtures/screenshot.webp', {
@@ -58,7 +59,7 @@ describe('dynamic assets', () => {
     expect(height).toBe(448)
   })
 
-  test("can't set set max-width indicator on the PNG that is already on disk", async () => {
+  test("can't set max-width indicator on the PNG that is already on disk", async () => {
     const res = await get(`/assets/images/mw-1000/_fixtures/screenshot.png`)
     expect(res.statusCode).toBe(404)
   })

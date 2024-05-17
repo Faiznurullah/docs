@@ -39,6 +39,8 @@ The dates we use for Enterprise releases and deprecations are stored in [release
 
 - [ ] Completed step 2 ✅
 
+1. Ensure you have local clones of the [translation repositories](#configuring-the-translation-repositories).
+1. Update all translation directories to the latest `main` branch.
 1. You can do this on the main branch or check out a new temporary branch.
 1. Hide search component temporarily while scraping docs in `src/search/components/Search.tsx`, by adding the `visually-hidden` class to the `form` element:
 
@@ -60,7 +62,7 @@ The dates we use for Enterprise releases and deprecations are stored in [release
 1. Do a dry run by scraping a small amount of files to test locally on your machine. This command does not overwrite the references to asset files so they will render on your machine.
 
     ```shell
-    node --max-old-space-size=8192 src/ghes-releases/scripts/archive-version.js --dry-run --local-dev
+    npm run archive-version -- --dry-run --local-dev
     ```
 
 1. Navigate to the scraped files directory (`tmpArchivalDir_<VERSION_TO_DEPRECATE>`) inside your docs-internal checkout. Open a few HTML files and ensure they render and drop-down pickers work correctly.
@@ -68,7 +70,7 @@ The dates we use for Enterprise releases and deprecations are stored in [release
 1. If the dry-run looks good, scrape all content files. This will take about 20-30 minutes. **Note:**  This will overwrite the directory that was previously generated with new files. You can also create a specific output directory using the `--output` flag.
 
     ```shell
-    node --max-old-space-size=8192 src/ghes-releases/scripts/archive-version.js
+    npm run archive-version
     ```
 
 1. Revert changes to `src/search/components/Search.tsx`.
@@ -90,7 +92,7 @@ The dates we use for Enterprise releases and deprecations are stored in [release
    1. Click `Containers` in the left sidebar, then click the `enterprise` container.
 
    1. Click `Upload` in the top bar. Drag and drop or click `Browse for files` to select the directory inside of `tmpArchivalDir_<VERSION_TO_DEPRECATE>`. For example, at the time of this writing, the directory name was `3.5`. The upload will take several minutes and the UI may not give feedback immediately. Don't close the browser tab or navigate away from the page until the upload is complete.
-  
+
    App method:
 
    1. Open the Microsoft Azure Storage Explorer app from the `Overview` tab [githubdocs Azure Storage Blob resource page](https://portal.azure.com/#@githubazure.onmicrosoft.com/resource/subscriptions/fa6134a7-f27e-4972-8e9f-0cedffa328f1/resourceGroups/docs-production/providers/Microsoft.Storage/storageAccounts/githubdocs/overview).
@@ -101,13 +103,15 @@ The dates we use for Enterprise releases and deprecations are stored in [release
 
 1. Remove the temporarily created directory from your `github/docs-internal` checkout.
 
-## Step 4: Test the archived static pages
+## Step 4: Deprecate the GHES release in docs-internal
 
 - [ ] Completed step 4 ✅
 
+This step will remove the version from the drop-down picker, effectively deprecating the version from a user's perspective. The content for the deprecated release will still exist in the Markdown files.
+
 1. In your `docs-internal` checkout, create a new branch: `git checkout -b deprecate-<version>`.
 
-1. In your `docs-internal` checkout, edit `lib/enterprise-server-releases.js` by removing the version number to be deprecated from the `supported` array and move it to the `deprecatedWithFunctionalRedirects` array.
+1. In your `docs-internal` checkout, edit `src/versions/lib/enterprise-server-releases.js` by removing the version number to be deprecated from the `supported` array and move it to the `deprecatedWithFunctionalRedirects` array.
 
 1. You can test that the static pages were generated correctly on localhost and on staging. Verify that the static pages are accessible by running `npm run dev` in your local `docs-internal` checkout and navigate to:
 `http://localhost:3000/enterprise/<version>/`.
@@ -120,59 +124,39 @@ The dates we use for Enterprise releases and deprecations are stored in [release
    - You should see a banner on the top of every deprecated page with the date that the version was deprecated.
    - You should see a banner at the top of every page for the oldes currently supported version with the date that it will be deprecated in the ~3 months.
 
-## Step 5: Deprecate the version in docs-internal
+1. If everything looks good, check in the changes to `src/versions/lib/enterprise-server-releases.js` and create a pull request.
+
+1. Ensure that CI is passing or make any changes to content needed to get tests to pass.
+
+1. 🚢 Ship the change.
+
+## Step 5: Create a tag
 
 - [ ] ✅ Completed step 5
 
-1. In your `deprecate-<version>` branch, create a new branch: `git checkout -b deprecate-<version>`.
-1. Ensure that CI is passing or make any changes to content needed to get tests to pass.
-1. 🚢 Ship the change.
+1. Create a new tag for the most recent commit on the `main` branch so that we can keep track of where in commit history we removed the GHES release. Create a tag called `enterprise-<release number>-release`. To create only a tag and not a release, you can [create a new release](https://github.com/github/docs-internal/releases), which allows you to "Choose a tag." Select add a new tag and use the tag name as the release title. After creating the new release, you will see the new tag as well. You can then delete the release.
 
-The version is now effectively deprecated. 🎉
+## Step 6: Remove static files and liquid conditionals for the version
 
-## Step 🎉: You can complete the remaining steps in any order. And get a snack, you deserve it! 🍪
+- [ ] Completed step 6 ✅
 
-## Step 6: Create a tag
-
-- [ ] ✅ Completed step 6
-
-1. Create a new tag for the most recent commit on the `main` branch so that we can keep track of where in commit history we removed the GHES release. Create a tag called `enterprise-<release number>-release`. To create only a tag and not a release, you can [create a new release](https://github.com/github/docs-internal/releases), which allows you to "Choose a tag." Select add a new tag and use the tag name as the release title. After creating the new release, you wil see the new tag as well. You can then delete the release.
-
-## Step 7: Remove static files for the version
-
-- [ ] Completed step 7 ✅
-
-1. In your `docs-internal` checkout, create a new branch: `git checkout -b remove-<version>-data-files`.
+1. In your `docs-internal` checkout, create a new branch: `git checkout -b remove-<version>-content`.
 
 1. Run `src/ghes-releases/scripts/sync-automated-pipeline-data.js` and commit results.
 
-1. Manually delete the deprecated directory in `data/graphql`. For example, if you are deprecating the 3.5 release, you'd delete the `data/graphql/ghes-3.5` directory.
+1. Remove the outdated Liquid markup and frontmatter. **Note:** There are typically a few bugs in the updated Markdown, which will be caught by the content linter or CI. Fix any bugs you find. For example, a liquid end tag may be removed but the start tag still exists. There are typically only a few bugs to fix. The script does a pretty great job of fixing most use cases, so this is typically a lightweight task. If there are several errors, something is likely broken and should be fixed in the script.
 
-1. Open a new PR. Reviewers will be automatically assigned. 
+   ```shell
+   npm run remove-version-markup -- --release <number>
+   ```
+
+1. If data reusables were deleted automatically, you'll need to remove references to the deleted reusable in the content. Using VSCode to find the occurrences is quick and there are typically only a few to update. If you have any questions, reach out to the docs-content team in #docs-content to ask for help updating the Markdown files.
+
+1. Open a new PR. When the CI is 🍏, add the PR to the [docs-content review board](https://github.com/orgs/github/projects/2936/views/2).
 
 1. When the PR is approved, merge it in. 🚢
 
-## Step 8: Remove the liquid conditionals and content for the version
-
-- [] Completed step 8 ✅
-
-1. In your `docs-internal` checkout, create a new branch `remove-<version>-markup` branch: `git checkout -b remove-<version>-markup`.
-
-1. Remove the outdated Liquid markup and frontmatter.
-
-   ```shell
-   src/ghes-releases/scripts/remove-version-markup.js --release <number>
-   ```
-
-1. If data resuables were deleted automatically, you'll need to remove references to the deleted reusable in the content. Using VSCode to find the occurrences is quick and there are typically only a few to update. If you have any questions, reach out to the docs-content team in #docs-content to ask for help updating the Markdown files.
-
-1. Open a PR with the results.
-
-1. There are typically a few bugs in the updated Markdown, which will be caught by CI. Check the tests, and fix any bugs you find. For example, a liquid end tag may be removed but the start tag still exists. There are typically only a few bugs to fix. The script does a pretty great job of fixing most use cases, so this is typically a lightweight task. If there are several errors, something is likely broken and should be fixed in the script.
-
-1. When the CI is 🍏, add the PR to the [docs content review board](https://github.com/orgs/github/projects/2936/views/2) for a docs-content writer to pick up and review. When the PR is approved, merge it in to complete the deprecation.
-
-## Step 8: Deprecate the OpenAPI description in `github/github`
+## Step 7: Deprecate the OpenAPI description in `github/github`
 
 1. In `github/github`, edit the release's config file in `app/api/description/config/releases/`, and change `deprecated: false` to `deprecated: true`.
 
@@ -180,9 +164,36 @@ The version is now effectively deprecated. 🎉
 
 1. When the PR is approved, [deploy the `github/github` PR](https://thehub.github.com/epd/engineering/devops/deployment/deploying-dotcom/). If you haven't deployed a `github/github` PR before, work with someone that has -- the process isn't too involved depending on how you deploy, but there are a lot of details that can potentially be confusing as you can see from the documentation.
 
+## Configuring the translation repositories
+
+You can clone the translation repositories directly inside of your docs-internal checkout, but I'd recommend cloning them in a separate directory. For example, create a `translations` directory at the same level as your `docs-internal` directory. Inside of the `translations` directory, clone the following repoisitories (ensure this list includes all languages that we are supporting):
+
+- [docs-internal.de-de](https://github.com/github/docs-internal.de-de)
+- [docs-internal.fr-fr](https://github.com/github/docs-internal.fr-fr)
+- [docs-internal.ko-kr](https://github.com/github/docs-internal.ko-kr)
+- [docs-internal.ru-ru](https://github.com/github/docs-internal.ru-ru)
+- [docs-internal.es-es](https://github.com/github/docs-internal.es-es)
+- [docs-internal.ja-jp](https://github.com/github/docs-internal.ja-jp)
+- [docs-internal.pt-br](https://github.com/github/docs-internal.pt-br)
+- [docs-internal.zh-cn](https://github.com/github/docs-internal.zh-cn)
+
+To map the location of each translation repository, edit your `.env` file with the mapping. For example, if following the locations suggested above, your `.env` file might look like this:
+
+```shell
+TRANSLATIONS=/Users/mona/repos/github-repos/translations
+TRANSLATIONS_ROOT_ES_ES=${TRANSLATIONS}/docs-internal.es-es
+TRANSLATIONS_ROOT_ZH_CN=${TRANSLATIONS}/docs-internal.zh-cn
+TRANSLATIONS_ROOT_JA_JP=${TRANSLATIONS}/docs-internal.ja-jp
+TRANSLATIONS_ROOT_PT_BR=${TRANSLATIONS}/docs-internal.pt-br
+TRANSLATIONS_ROOT_FR_FR=${TRANSLATIONS}/docs-internal.fr-fr
+TRANSLATIONS_ROOT_RU_RU=${TRANSLATIONS}/docs-internal.ru-ru
+TRANSLATIONS_ROOT_KO_KR=${TRANSLATIONS}/docs-internal.ko-kr
+TRANSLATIONS_ROOT_DE_DE=${TRANSLATIONS}/docs-internal.de-de
+```
+
 ## Re-scraping a page or all pages
 
-Occasionally, a change will need to be added to our archived enterprise versions. If this occurs, you can check out the `enterprise-<release number>-release` branch and re-scrape the page or all pages using `src/ghes-releases/scripts/archive-version.js`. To scrape a single page you can use the `—page <page relative path>` option.
+Occasionally, a change will need to be added to our archived enterprise versions. If this occurs, you can check out the `enterprise-<release number>-release` branch and re-scrape the page or all pages using `npm run archive-version`. To scrape a single page you can use the `—page <page relative path>` option.
 
 For each language, upload the new file to Azure blob storage in the `enterprise` container.
 

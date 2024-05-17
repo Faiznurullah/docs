@@ -1,10 +1,12 @@
 /* eslint-disable camelcase */
-import Cookies from 'components/lib/cookies'
+import Cookies from 'src/frame/components/lib/cookies'
 import { parseUserAgent } from './user-agent'
+import { Router } from 'next/router'
+import { isLoggedIn } from 'src/frame/components/hooks/useHasAccount'
 
 const COOKIE_NAME = '_docs-events'
 
-const startVisitTime = Date.now()
+export const startVisitTime = Date.now()
 
 let initialized = false
 let cookieValue: string | undefined
@@ -17,7 +19,6 @@ let scrollDirection = 1
 let scrollFlipCount = 0
 let maxScrollY = 0
 let previousPath: string | undefined
-
 let hoveredUrls = new Set()
 
 function resetPageParams() {
@@ -93,6 +94,7 @@ type SendEventProps = {
   [EventType.link]: {
     link_url: string
     link_samesite?: boolean
+    link_samepage?: boolean
     link_container?: string
   }
   [EventType.page]: {}
@@ -117,6 +119,7 @@ type SendEventProps = {
     survey_vote: boolean
     survey_comment?: string
     survey_email?: string
+    survey_visit_duration?: number
   }
 }
 
@@ -157,6 +160,7 @@ export function sendEvent<T extends EventType>({
       page_document_type: getMetaContent('page-document-type'),
       page_type: getMetaContent('page-type'),
       status: Number(getMetaContent('status') || 0),
+      is_logged_in: isLoggedIn(),
 
       // Device information
       // os, os_version, browser, browser_version:
@@ -206,10 +210,10 @@ function getReferrer(documentReferrer: string) {
 }
 
 function getColorModePreference() {
-  // color mode is set as attributes on <body>, we'll use that information
+  // color mode is set as attributes on <html>, we'll use that information
   // along with media query checking rather than parsing the cookie value
   // set by github.com
-  let color_mode_preference = document.querySelector('body')?.dataset.colorMode
+  let color_mode_preference = document.querySelector('html')?.dataset.colorMode
 
   if (color_mode_preference === 'auto') {
     if (window.matchMedia('(prefers-color-scheme: light)').matches) {
@@ -295,22 +299,51 @@ function initPageAndExitEvent() {
   })
 
   // Client-side routing
-  const pushState = history.pushState
-  history.pushState = function (state, title, url) {
+  Router.events.on('routeChangeStart', async (url) => {
     // Don't trigger page events on query string or hash changes
-    const newPath = url?.toString().replace(location.origin, '').split('?')[0]
-    previousPath = location.pathname
+    previousPath = location.pathname // pathname set to "prior" url, arg "upcoming" url
+    const newPath = url?.toString().split('?')[0].split('#')[0]
     const shouldSendEvents = newPath !== previousPath
     if (shouldSendEvents) {
       sendExit()
-    }
-    const result = pushState.call(history, state, title, url)
-    if (shouldSendEvents) {
-      sendPage()
+      await waitForPageReady()
       resetPageParams()
+      sendPage()
     }
-    return result
-  }
+  })
+}
+
+// We want to wait for the DOM to mutate the <meta> tags
+// as well as finish routeChangeComplete (location.pathname)
+// before sending the page event in order to get accurate data
+async function waitForPageReady() {
+  const route = new Promise((resolve) => {
+    const handler = () => {
+      Router.events.off('routeChangeComplete', handler)
+      setTimeout(() => resolve(true))
+    }
+    Router.events.on('routeChangeComplete', handler)
+  })
+  const mutate = new Promise((resolve) => {
+    const observer = new MutationObserver((mutations) => {
+      const metaMutated = mutations.find(
+        (mutation) =>
+          mutation.target?.nodeName === 'META' ||
+          Array.from(mutation.addedNodes).find((node) => node.nodeName === 'META') ||
+          Array.from(mutation.removedNodes).find((node) => node.nodeName === 'META'),
+      )
+      if (metaMutated) {
+        observer.disconnect()
+        setTimeout(() => resolve(true))
+      }
+    })
+    observer.observe(document.getElementsByTagName('head')[0], {
+      subtree: true,
+      childList: true,
+      attributes: true,
+    })
+  })
+  return Promise.all([route, mutate])
 }
 
 function initClipboardEvent() {
@@ -340,14 +373,27 @@ function initLinkEvent() {
     const link = target.closest('a[href]') as HTMLAnchorElement
     if (!link) return
     const sameSite = link.origin === location.origin
-    const container = ['header', 'nav', 'article', 'toc', 'footer'].find((name) =>
-      target.closest(`[data-container="${name}"]`),
-    )
+    const container = target.closest(`[data-container]`) as HTMLElement | null
     sendEvent({
       type: EventType.link,
       link_url: link.href,
       link_samesite: sameSite,
-      link_container: container,
+      link_samepage: sameSite && link.pathname === location.pathname,
+      link_container: container?.dataset.container,
+    })
+  })
+
+  // Add tracking for scroll to top button
+  document.documentElement.addEventListener('click', (evt) => {
+    const target = evt.target as HTMLElement
+    if (!target.closest('.ghd-scroll-to-top')) return
+    const url = window.location.href.split('#')[0] // Remove hash
+    sendEvent({
+      type: EventType.link,
+      link_url: `${url}#scroll-to-top`,
+      link_samesite: true,
+      link_samepage: true,
+      link_container: 'static',
     })
   })
 }
@@ -382,7 +428,7 @@ function initHoverEvent() {
   })
 
   // Doesn't matter which link you hovered on that triggered a timer,
-  // you're clearly not hovering over it any more.
+  // you're clearly not hovering over it anymore.
   document.documentElement.addEventListener('mouseout', () => {
     if (timer) {
       window.clearTimeout(timer)

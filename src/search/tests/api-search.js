@@ -7,14 +7,14 @@
  *   ELASTICSEARCH_URL=http://localhost:9200 npm run index-test-fixtures
  *
  * This will replace any "real" Elasticsearch indexes you might have so
- * once you're done working on jest tests you need to index real
+ * once you're done working on vitest tests you need to index real
  * content again.
  */
 
-import { jest, test, expect } from '@jest/globals'
+import { expect, test, vi } from 'vitest'
 
-import { describeIfElasticsearchURL } from '../../../tests/helpers/conditional-runs.js'
-import { get } from '../../../tests/helpers/e2etest.js'
+import { describeIfElasticsearchURL } from '#src/tests/helpers/conditional-runs.js'
+import { get } from '#src/tests/helpers/e2etest.js'
 
 if (!process.env.ELASTICSEARCH_URL) {
   console.warn(
@@ -25,7 +25,7 @@ if (!process.env.ELASTICSEARCH_URL) {
 
 // This suite only runs if $ELASTICSEARCH_URL is set.
 describeIfElasticsearchURL('search v1 middleware', () => {
-  jest.setTimeout(60 * 1000)
+  vi.setConfig({ testTimeout: 60 * 1000 })
 
   test('basic search', async () => {
     const sp = new URLSearchParams()
@@ -128,7 +128,6 @@ describeIfElasticsearchURL('search v1 middleware', () => {
   test('configurable highlights', async () => {
     const sp = new URLSearchParams()
     sp.set('query', 'introduction heading')
-    sp.append('highlights', 'headings')
     sp.append('highlights', 'content')
     const res = await get('/api/search/v1?' + sp)
     expect(res.statusCode).toBe(200)
@@ -136,7 +135,6 @@ describeIfElasticsearchURL('search v1 middleware', () => {
     expect(results.meta.found.value).toBeGreaterThanOrEqual(1)
     for (const hit of results.hits) {
       expect(hit.highlights.title).toBeFalsy()
-      expect(hit.highlights.headings).toBeTruthy()
       expect(hit.highlights.content).toBeTruthy()
     }
   })
@@ -145,14 +143,13 @@ describeIfElasticsearchURL('search v1 middleware', () => {
     const sp = new URLSearchParams()
     // This will match because it's in the 'content' but not in 'headings'
     sp.set('query', 'Fact of life')
-    sp.set('highlights', 'headings')
+    sp.set('highlights', 'title')
     const res = await get('/api/search/v1?' + sp)
     expect(res.statusCode).toBe(200)
     const results = JSON.parse(res.body)
     expect(results.meta.found.value).toBeGreaterThanOrEqual(1)
     for (const hit of results.hits) {
-      expect(hit.highlights.headings).toBeTruthy()
-      expect(hit.highlights.title).toBeFalsy()
+      expect(hit.highlights.title).toBeTruthy()
       expect(hit.highlights.content).toBeFalsy()
     }
   })
@@ -249,7 +246,7 @@ describeIfElasticsearchURL('search v1 middleware', () => {
       sp.append('query', 'test2')
       const res = await get('/api/search/v1?' + sp)
       expect(res.statusCode).toBe(400)
-      expect(JSON.parse(res.body).error).toMatch('Can not have multiple values')
+      expect(JSON.parse(res.body).error).toMatch('Cannot have multiple values')
     }
   })
 
@@ -266,7 +263,7 @@ describeIfElasticsearchURL('search v1 middleware', () => {
 })
 
 describeIfElasticsearchURL("additional fields with 'include'", () => {
-  jest.setTimeout(60 * 1000)
+  vi.setConfig({ testTimeout: 60 * 1000 })
 
   test("'intro' and 'headings' are omitted by default", async () => {
     const sp = new URLSearchParams()

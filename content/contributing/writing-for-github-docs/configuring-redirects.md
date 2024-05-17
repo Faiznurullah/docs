@@ -1,7 +1,6 @@
 ---
 title: Configuring redirects
 intro: "If an article's title, version, or location changes, you can create a redirect to the current content."
-product: '{% data reusables.contributing.product-note %}'
 versions:
   feature: 'contributing'
 redirect_from:
@@ -20,7 +19,7 @@ Within the {% data variables.product.prodname_docs %}, you can redirect from one
 
 ### Redirects across files
 
-If you change the name of an article and want its old URL to redirect to its new URL, use the `redirect_from` frontmatter with the path to the article's old name.
+If you change the name of an article and want its old URL to redirect to its new URL for all versions, use the `redirect_from` frontmatter with the path to the article's old name. If you change the name of an article and want different versions to redirect to different URLs, follow the steps in the "[Redirects across versions](#redirects-across-versions)" section.
 
 In the following example, the article "All about commits" was renamed to "Creating your first commit." The `redirect_from` frontmatter redirects anyone who navigates to the old article URL to the new article URL.
 
@@ -41,7 +40,6 @@ The order of precedence is specified in [`lib/all-versions.js`](https://github.c
 1. {% data variables.product.prodname_free_team %}, {% data variables.product.prodname_pro %}, or {% data variables.product.prodname_team %} (`fpt`)
 1. {% data variables.product.prodname_ghe_cloud %} (`ghec`)
 1. {% data variables.product.prodname_ghe_server %} (`ghes`)
-1. {% data variables.product.prodname_ghe_managed %} (`ghae`)
 
 If a page titled `ARTICLE` is only available in {% data variables.product.prodname_ghe_cloud %} and {% data variables.product.prodname_ghe_server %}, the link `https://docs.github.com/ARTICLE` will automatically redirect to `https://docs.github.com/enterprise-cloud@latest/ARTICLE` because {% data variables.product.prodname_ghe_cloud %} has precedence over {% data variables.product.prodname_ghe_server %}.<!-- markdownlint-disable-line search-replace -->
 
@@ -49,7 +47,7 @@ If `ARTICLE` is available in Free, Pro, or Team, no redirect will occur because 
 
 ### Redirects across versions
 
-If you want the URL for one version of an article to redirect to a URL for another version, you must update the [redirect-exceptions.txt](https://github.com/github/docs/blob/main/src/redirects/lib/static/redirect-exceptions.txt) file in the `src/redirects` directory.
+If you want the URL for one version of an article to redirect to a URL for another version or to another URL entirely, you must update the [redirect-exceptions.txt](https://github.com/github/docs/blob/main/src/redirects/lib/static/redirect-exceptions.txt) file in the `src/redirects` directory.
 
 For example, if you remove the Free, Pro, or Team (`fpt`) version of an article, the URL will automatically redirect to the next available version of the page. If you want it to redirect to a version that is lower in the order of precedence, or to a different page entirely, you must specify an exception.
 

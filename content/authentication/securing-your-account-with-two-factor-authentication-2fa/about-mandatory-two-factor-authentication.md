@@ -31,7 +31,7 @@ Your account is selected for mandatory 2FA if you have taken some action on {% d
 
 ### About mandatory 2FA for organizations and enterprises
 
-Mandatory 2FA is required by {% data variables.product.prodname_dotcom %} itself to improve security for both individual developers and the broader software development ecosystem. Your administrator may also require 2FA enablement as a requirement to join their organization or enterprise, but those requirements are separate from this program.
+Mandatory 2FA is required by {% data variables.product.prodname_dotcom %} itself to improve security for both individual developers and the broader software development ecosystem. Your administrator may also require 2FA enablement as a requirement to join their organization or enterprise, but those requirements are separate from this program. To find which users have enabled 2FA or are required to do so, see "[AUTOTITLE](/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/viewing-people-in-your-enterprise#viewing-whether-members-in-your-enterprise-have-2fa-enabled)" or "[AUTOTITLE](/organizations/keeping-your-organization-secure/managing-two-factor-authentication-for-your-organization/viewing-whether-users-in-your-organization-have-2fa-enabled)."
 
 Your account's eligibility for mandatory 2FA **does not** impact the eligibility of other individuals. For example, if you are an organization owner, and your account is eligible for mandatory 2FA, that does not impact the eligibility of other accounts within your organization.
 
@@ -86,6 +86,10 @@ If you have been selected for mandatory 2FA, you must enroll in 2FA on {% data v
 ### About email verification and mandatory 2FA
 
 When you log in to {% data variables.product.prodname_dotcom_the_website %}, email verification does not count as 2FA. Your account's email address is used for password resets, which are a form of account recovery. If an attacker has access to your email inbox, they can reset the password for your account and pass the email device verification check, reducing your account's protection to a single factor. We require a second factor to prevent this scenario, so that second factor must be distinct from your email inbox. When you enable 2FA, we will no longer perform email verification on login.
+
+### About service accounts and mandatory 2FA
+
+Unattended or shared access accounts in your organization, such as bots and service accounts, that are selected for mandatory two-factor authentication, must enroll in 2FA. Enabling 2FA will not revoke or change the behavior of tokens issued for the service account. {% data variables.product.prodname_dotcom %} recommends securely storing the TOTP secret of the service account in shared credential storage. For more information, see "[AUTOTITLE](/organizations/keeping-your-organization-secure/managing-two-factor-authentication-for-your-organization/managing-bots-and-service-accounts-with-two-factor-authentication)."
 
 ## About your privacy with mandatory 2FA
 

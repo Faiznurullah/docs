@@ -10,7 +10,6 @@ versions:
   fpt: '*'
   ghec: '*'
   ghes: '*'
-  ghae: '>= 3.4'
 topics:
   - Repositories
 shortTitle: Teams & people
@@ -23,6 +22,14 @@ For each repository that you administer on {% data variables.product.prodname_do
 This overview can help you audit access to your repository, onboard or off-board contractors or employees, and effectively respond to security incidents.
 
 {% data reusables.organizations.mixed-roles-warning %}
+
+{% ifversion repository-collaborators %}
+
+If you're a member of an {% data variables.enterprise.prodname_emu_enterprise %}, you can invite a member of your enterprise to collaborate in a repository that either a user or organization owns. The invited user will only have access to the repository, even if the repository belongs to an organization. The user must be provisioned by your company's identity provider (IdP). For more information, see "[AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization#outside-collaborators-or-repository-collaborators)."
+
+{% data reusables.repositories.repository-collaborators-release-phase %}
+
+{% endif %}
 
 For more information about repository roles, see "[AUTOTITLE](/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-personal-account-settings/permission-levels-for-a-personal-account-repository)" and "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)."
 

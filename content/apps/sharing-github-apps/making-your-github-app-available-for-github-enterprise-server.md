@@ -5,7 +5,6 @@ intro: 'In order for {% data variables.product.prodname_ghe_server %} instances 
 versions:
   fpt: '*'
   ghes: '*'
-  ghae: '*'
   ghec: '*'
 topics:
   - GitHub Apps
@@ -29,14 +28,14 @@ Organizations owned by a {% data variables.product.prodname_ghe_server %} instan
 
 1. The app developer creates a manifest or URL parameters. For more information, see "[AUTOTITLE](/apps/creating-github-apps/setting-up-a-github-app/creating-a-github-app-from-a-manifest)" and "[AUTOTITLE](/apps/creating-github-apps/setting-up-a-github-app/creating-a-github-app-using-url-parameters)."
 1. The app developer shares the manifest or URL parameters with the {% data variables.product.prodname_ghe_server %} administrator that wants to use the app. The same manifest or URL parameters can be shared with multiple {% data variables.product.prodname_ghe_server %} instances.
-1. An organization administrator in the instance uses the manifest or URL parameters to register a {% data variables.product.prodname_github_app %}.
+1. An organization owner in the instance uses the manifest or URL parameters to register a {% data variables.product.prodname_github_app %}.
 1. The organization installs the {% data variables.product.prodname_github_app %} that they registered.
 
    Optionally, if the organization made the {% data variables.product.prodname_github_app %} public, other organizations within the instance can install the {% data variables.product.prodname_github_app %} as well. There is not a way to install a {% data variables.product.prodname_github_app %} on an entire instance, only on organizations within an instance.
 
 ## The app code must be able to access the {% data variables.product.prodname_github_app %} credentials for the instance
 
-You app's code will need the credentials of the {% data variables.product.prodname_github_app %} that the {% data variables.product.prodname_ghe_server %} instance registered. It will also need the hostname of the instance. You have two options: get the credentials and hostname from the instance, or have the {% data variables.product.prodname_ghe_server %} customer host and manage a self-hostable version of the app.
+Your app's code will need the credentials of the {% data variables.product.prodname_github_app %} that the {% data variables.product.prodname_ghe_server %} instance registered. It will also need the hostname of the instance. You have two options: get the credentials and hostname from the instance, or have the {% data variables.product.prodname_ghe_server %} customer host and manage a self-hostable version of the app.
 
 ### Get the credentials from the {% data variables.product.prodname_ghe_server %} instance
 

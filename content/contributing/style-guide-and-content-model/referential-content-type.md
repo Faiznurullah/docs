@@ -1,7 +1,6 @@
 ---
 title: Referential content type
 intro: 'Referential content provides detailed information that people need while they are actively using a feature.'
-product: '{% data reusables.contributing.product-note %}'
 versions:
   feature: 'contributing'
 ---
@@ -34,7 +33,7 @@ For the referential content template, see "[AUTOTITLE](/contributing/writing-for
 ## Examples of referential content
 
 - Referential articles
-  - [AUTOTITLE](/get-started/using-github/keyboard-shortcuts)
+  - [AUTOTITLE](/get-started/accessibility/keyboard-shortcuts)
   - [AUTOTITLE](/enterprise-cloud@latest/admin/user-management/managing-users-in-your-enterprise/roles-in-an-enterprise)
   - [AUTOTITLE](/free-pro-team@latest/rest/reference/billing) in the REST API documentation
   - [AUTOTITLE](/graphql/reference/mutations) in the GraphQL API documentation

@@ -1,15 +1,15 @@
+import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { slug } from 'github-slugger'
-import { CheckCircleFillIcon } from '@primer/octicons-react'
 import cx from 'classnames'
 
-import { HeadingLink } from 'components/article/HeadingLink'
-import { Link } from 'components/Link'
+import { HeadingLink } from 'src/frame/components/article/HeadingLink'
 import { useTranslation } from 'src/languages/components/useTranslation'
 import { RestPreviewNotice } from './RestPreviewNotice'
 import { ParameterTable } from 'src/automated-pipelines/components/parameter-table/ParameterTable'
 import { RestCodeSamples } from './RestCodeSamples'
 import { RestStatusCodes } from './RestStatusCodes'
+import { RestAuth } from './RestAuth'
 import { Operation } from './types'
 
 import styles from './RestOperation.module.scss'
@@ -37,27 +37,37 @@ export function RestOperation({ operation }: Props) {
   const hasCodeSamples = operation.codeExamples.length > 0
   const hasParameters = operation.parameters.length > 0 || operation.bodyParameters.length > 0
 
+  const anchorRef = useRef<null | HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (router.asPath.includes('#')) {
+      const routerAnchor = router.asPath.split('#')[1]
+      if (routerAnchor === titleSlug) {
+        anchorRef?.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        })
+      }
+    }
+  }, [])
+
   return (
-    <div className="pb-8">
+    <div className="pb-8" ref={anchorRef}>
       <HeadingLink as="h2" slug={titleSlug}>
         {operation.title}
       </HeadingLink>
-      {operation.enabledForGitHubApps && (
-        <div className="d-flex">
-          <span className="mr-2 d-flex flex-items-center">
-            <CheckCircleFillIcon size={16} />
-          </span>
-          <span>
-            {t('works_with') + ' '}
-            <Link href={`/${router.locale}/developers/apps`}>GitHub Apps</Link>
-          </span>
-        </div>
-      )}
       <div className="d-flex flex-wrap gutter mt-4">
         <div className="col-md-12 col-lg-6">
           <div
             className={cx(styles.codeBlock)}
             dangerouslySetInnerHTML={{ __html: operation.descriptionHTML }}
+          />
+
+          <RestAuth
+            progAccess={operation.progAccess}
+            slug={titleSlug}
+            heading={t('fine_grained_access').replace('{{ RESTOperationTitle }}', operation.title)}
           />
 
           {hasParameters && (

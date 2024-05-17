@@ -14,4 +14,4 @@ src/ghes-releases/lib/enterprise-dates.json @github/docs-content-enterprise
 content/actions/deployment/security-hardening-your-deployments/** @github/oidc
 
 # RAI - CELA
-content/copilot/github-copilot-chat/about-github-copilot-chat.md @github/legal-product
+data/reusables/rai/** @github/legal-product

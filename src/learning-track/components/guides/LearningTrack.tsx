@@ -1,17 +1,17 @@
 import { useTranslation } from 'src/languages/components/useTranslation'
 import { ArrowRightIcon } from '@primer/octicons-react'
 import { LearningTrack as LearningTrackT } from 'src/landings/components/ProductGuidesContext'
-import { Link } from 'components/Link'
+import { Link } from 'src/frame/components/Link'
 
-import { HeadingLink } from 'components/article/HeadingLink'
+import { HeadingLink } from 'src/frame/components/article/HeadingLink'
 
 type Props = {
   track: LearningTrackT
 }
 
 export const LearningTrack = ({ track }: Props) => {
-  if (!track) return <div />
   const { t, tObject } = useTranslation('product_guides')
+  if (!track) return <div />
 
   return (
     <div data-testid="learning-track" className="col-12 col-md-6 my-3 px-4">
