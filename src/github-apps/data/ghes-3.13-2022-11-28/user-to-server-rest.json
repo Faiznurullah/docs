@@ -2697,90 +2697,6 @@
       "requestPath": "/orgs/{org}/memberships/{username}"
     },
     {
-      "slug": "list-organization-fine-grained-permissions-for-an-organization",
-      "subcategory": "organization-roles",
-      "verb": "get",
-      "requestPath": "/orgs/{org}/organization-fine-grained-permissions"
-    },
-    {
-      "slug": "get-all-organization-roles-for-an-organization",
-      "subcategory": "organization-roles",
-      "verb": "get",
-      "requestPath": "/orgs/{org}/organization-roles"
-    },
-    {
-      "slug": "create-a-custom-organization-role",
-      "subcategory": "organization-roles",
-      "verb": "post",
-      "requestPath": "/orgs/{org}/organization-roles"
-    },
-    {
-      "slug": "remove-all-organization-roles-for-a-team",
-      "subcategory": "organization-roles",
-      "verb": "delete",
-      "requestPath": "/orgs/{org}/organization-roles/teams/{team_slug}"
-    },
-    {
-      "slug": "assign-an-organization-role-to-a-team",
-      "subcategory": "organization-roles",
-      "verb": "put",
-      "requestPath": "/orgs/{org}/organization-roles/teams/{team_slug}/{role_id}"
-    },
-    {
-      "slug": "remove-an-organization-role-from-a-team",
-      "subcategory": "organization-roles",
-      "verb": "delete",
-      "requestPath": "/orgs/{org}/organization-roles/teams/{team_slug}/{role_id}"
-    },
-    {
-      "slug": "remove-all-organization-roles-for-a-user",
-      "subcategory": "organization-roles",
-      "verb": "delete",
-      "requestPath": "/orgs/{org}/organization-roles/users/{username}"
-    },
-    {
-      "slug": "assign-an-organization-role-to-a-user",
-      "subcategory": "organization-roles",
-      "verb": "put",
-      "requestPath": "/orgs/{org}/organization-roles/users/{username}/{role_id}"
-    },
-    {
-      "slug": "remove-an-organization-role-from-a-user",
-      "subcategory": "organization-roles",
-      "verb": "delete",
-      "requestPath": "/orgs/{org}/organization-roles/users/{username}/{role_id}"
-    },
-    {
-      "slug": "get-an-organization-role",
-      "subcategory": "organization-roles",
-      "verb": "get",
-      "requestPath": "/orgs/{org}/organization-roles/{role_id}"
-    },
-    {
-      "slug": "update-a-custom-organization-role",
-      "subcategory": "organization-roles",
-      "verb": "patch",
-      "requestPath": "/orgs/{org}/organization-roles/{role_id}"
-    },
-    {
-      "slug": "delete-a-custom-organization-role",
-      "subcategory": "organization-roles",
-      "verb": "delete",
-      "requestPath": "/orgs/{org}/organization-roles/{role_id}"
-    },
-    {
-      "slug": "list-teams-that-are-assigned-to-an-organization-role",
-      "subcategory": "organization-roles",
-      "verb": "get",
-      "requestPath": "/orgs/{org}/organization-roles/{role_id}/teams"
-    },
-    {
-      "slug": "list-users-that-are-assigned-to-an-organization-role",
-      "subcategory": "organization-roles",
-      "verb": "get",
-      "requestPath": "/orgs/{org}/organization-roles/{role_id}/users"
-    },
-    {
       "slug": "list-outside-collaborators-for-an-organization",
       "subcategory": "outside-collaborators",
       "verb": "get",
@@ -2845,6 +2761,48 @@
       "subcategory": "personal-access-tokens",
       "verb": "get",
       "requestPath": "/orgs/{org}/personal-access-tokens/{pat_id}/repositories"
+    },
+    {
+      "slug": "get-all-custom-properties-for-an-organization",
+      "subcategory": "custom-properties",
+      "verb": "get",
+      "requestPath": "/orgs/{org}/properties/schema"
+    },
+    {
+      "slug": "create-or-update-custom-properties-for-an-organization",
+      "subcategory": "custom-properties",
+      "verb": "patch",
+      "requestPath": "/orgs/{org}/properties/schema"
+    },
+    {
+      "slug": "get-a-custom-property-for-an-organization",
+      "subcategory": "custom-properties",
+      "verb": "get",
+      "requestPath": "/orgs/{org}/properties/schema/{custom_property_name}"
+    },
+    {
+      "slug": "create-or-update-a-custom-property-for-an-organization",
+      "subcategory": "custom-properties",
+      "verb": "put",
+      "requestPath": "/orgs/{org}/properties/schema/{custom_property_name}"
+    },
+    {
+      "slug": "remove-a-custom-property-for-an-organization",
+      "subcategory": "custom-properties",
+      "verb": "delete",
+      "requestPath": "/orgs/{org}/properties/schema/{custom_property_name}"
+    },
+    {
+      "slug": "list-custom-property-values-for-organization-repositories",
+      "subcategory": "custom-properties",
+      "verb": "get",
+      "requestPath": "/orgs/{org}/properties/values"
+    },
+    {
+      "slug": "create-or-update-custom-property-values-for-organization-repositories",
+      "subcategory": "custom-properties",
+      "verb": "patch",
+      "requestPath": "/orgs/{org}/properties/values"
     },
     {
       "slug": "list-public-organization-members",
@@ -3835,6 +3793,18 @@
       "requestPath": "/repos/{owner}/{repo}/languages"
     },
     {
+      "slug": "get-all-custom-property-values-for-a-repository",
+      "subcategory": "custom-properties",
+      "verb": "get",
+      "requestPath": "/repos/{owner}/{repo}/properties/values"
+    },
+    {
+      "slug": "create-or-update-custom-property-values-for-a-repository",
+      "subcategory": "custom-properties",
+      "verb": "patch",
+      "requestPath": "/repos/{owner}/{repo}/properties/values"
+    },
+    {
       "slug": "list-repository-cache-replication-status",
       "subcategory": "repos",
       "verb": "get",
@@ -3895,19 +3865,19 @@
       "requestPath": "/repos/{owner}/{repo}/tags"
     },
     {
-      "slug": "list-tag-protection-states-for-a-repository",
+      "slug": "deprecated---list-tag-protection-states-for-a-repository",
       "subcategory": "tags",
       "verb": "get",
       "requestPath": "/repos/{owner}/{repo}/tags/protection"
     },
     {
-      "slug": "create-a-tag-protection-state-for-a-repository",
+      "slug": "deprecated---create-a-tag-protection-state-for-a-repository",
       "subcategory": "tags",
       "verb": "post",
       "requestPath": "/repos/{owner}/{repo}/tags/protection"
     },
     {
-      "slug": "delete-a-tag-protection-state-for-a-repository",
+      "slug": "deprecated---delete-a-tag-protection-state-for-a-repository",
       "subcategory": "tags",
       "verb": "delete",
       "requestPath": "/repos/{owner}/{repo}/tags/protection/{tag_protection_id}"
@@ -4317,12 +4287,6 @@
       "subcategory": "users",
       "verb": "get",
       "requestPath": "/users"
-    },
-    {
-      "slug": "get-a-user",
-      "subcategory": "users",
-      "verb": "get",
-      "requestPath": "/users/{username}"
     },
     {
       "slug": "list-followers-of-a-user",

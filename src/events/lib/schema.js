@@ -39,29 +39,33 @@ const context = {
     },
 
     // Content information
-    path: {
+    referrer: {
       type: 'string',
-      description: 'The browser value of `location.pathname`.',
+      description: 'The browser value of `document.referrer`.',
       format: 'uri-reference',
+    },
+    href: {
+      type: 'string',
+      description: 'The browser value of `location.href`.',
+      format: 'uri',
     },
     hostname: {
       type: 'string',
       description: 'The browser value of `location.hostname.`',
       format: 'uri-reference',
     },
-    referrer: {
+    path: {
       type: 'string',
-      description: 'The browser value of `document.referrer`.',
+      description: 'The browser value of `location.pathname`.',
       format: 'uri-reference',
     },
     search: {
       type: 'string',
       description: 'The browser value of `location.search`.',
     },
-    href: {
+    hash: {
       type: 'string',
-      description: 'The browser value of `location.href`.',
-      format: 'uri',
+      description: 'The browser value of `location.hash`.',
     },
     path_language: {
       type: 'string',
@@ -385,11 +389,10 @@ const survey = {
       format: 'email',
       description: "The user's email address, if the user provided and consented.",
     },
-    survey_visit_duration: {
+    survey_rating: {
       type: 'number',
-      minimum: 0.001,
       description:
-        'The duration of survey submission - page.timestamp, in seconds. Used to filter out bot-generated survey resopnses.',
+        'The compute rating of the quality of the survey comment. Used for spam filtering and quality control.',
     },
   },
 }
@@ -410,7 +413,6 @@ const experiment = {
     },
     experiment_variation: {
       type: 'string',
-      enum: ['control', 'treatment'],
       description: 'The variation this user we bucketed in, such as control or treatment.',
     },
     experiment_success: {
